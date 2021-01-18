@@ -10,11 +10,14 @@ For determining what chunks should be loaded, the `chunkActivityDirector` of typ
 Game the world belongs to.
 
 ### `worldID: WorldID`
-ID of the world withing the game (`uint16`).
+ID of the world withing the game (`UInt16`).
 
 ## Methods
 ### `maybeChunk(pos: ChunkWorldPos): Chunk`
 Returns chunk at position `pos` if it is currently loaded in the memory. Returns `null` otherwise.
+
+### `eventSubscribedChunks(event: WorldEvent) : List<Chunk>`
+Returns list of chunks that are subscribed to `event`.
 
 ## Implementation notes
 * It is recommended to store chunks as a hash table with the position of the chunk (2D - `ChunkWorldPos`) as the key.

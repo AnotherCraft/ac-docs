@@ -1,5 +1,5 @@
 # `ChunkWorldPos`
-`ChunkWorldPos` is a two-dimensional vector class used for representing position of a chunk in the world. Components are of type `BlockWorldPos_T`, which is `int32`.
+`ChunkWorldPos` is a two-dimensional vector class used for representing position of a chunk in the world. Components are of type `BlockWorldPos_T`, which is `Int32`.
 
 Chunks arranged in a sparse 2D grid, chunks do not stack vertically. Chunks can have different z offsets, but the `ChunkWorldPos` class does not consider that information.
 

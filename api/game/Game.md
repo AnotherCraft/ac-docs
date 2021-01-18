@@ -2,6 +2,10 @@
 
 The `Game` object represents a whole game (running on a single server), encapsulating possibly multiple worlds.
 
+## Global variables
+### `game: Game (thread-local)`
+For making the life easier, the currently active game is stored in a thread-local variable.
+
 ## Properties
 ### `blockTypeManager: BlockTypeManager`
 Manager that stores what block types are registered within the game.
