@@ -12,6 +12,9 @@ Game the world belongs to.
 ### `worldID: WorldID`
 ID of the world withing the game (`UInt16`).
 
+### `chunkActivityDirector: ChunkAnchorManager`
+Manager that handles determining which chunks should be active/loaded and which not.
+
 ## Methods
 ### `maybeChunk(pos: ChunkWorldPos): Chunk`
 Returns chunk at position `pos` if it is currently loaded in the memory. Returns `null` otherwise.
