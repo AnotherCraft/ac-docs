@@ -16,25 +16,47 @@ Adds component to the block type. This function can only be called in the initia
 ## Shape components
 Shape components determine look/shape of the block. Unless explicitly specified, the shape is static.
 
-### `BTC_UniformBlockShape(tex: Texture)`
+### `BTC_BlockShapeBase`
+Base class for block shapes (standard grid aligned cubes).
+
+* `selfOpaque: bool`
+  * Self opaque blocks do not rener faces adjacent to a block of the same type. This is used for example with glass or any semi-transparent stuff.
+
+### `BTC_UniformBlockShape : BTC_BlockShapeBase`
 Standard block with all sides having the same texture.
 
-### `BTC_UniformSidesBlockShape(texSides, texTop, texBottom: Texture)`
+* `texture: Texture`
+
+### `BTC_UniformSidesBlockShape : BTC_BlockSHapeBase`
 Standard block, sides have the same texture, top and bottom have different textures.
 
-### `BTC_CrossShape(tex: Texture)`
+* `sidesTexture: Texture`
+* `topTexture: Texture`
+* `bottomTexture: Texture`
+
+### `BTC_CrossShape`
 Cross shape (+).
 
-### `BTC_DiagonalCrossShapeShape(tex: Texture)`
+* `texture: Texture`
+
+### `BTC_DiagonalCrossShapeShape`
 Diagonal cross shape (X).
 
-### `BTC_HashShape(tex: Texture)`
+* `texture: Texture`
+
+### `BTC_HashShape`
 Hash shape (#).
+
+* `texture: Texture`
 
 ## Light-related components
 
-### `BTC_StaticOpacity(opacity: BlockLightLevel = maxLightLevel)`
+### `BTC_StaticOpacity`
 Adds static opacity to the block (the block blocks light going through). Unless the `opacity` is specified, the block blocks all light going through.
 
-### `BTC_StaticLightEmitter(emitLevel: BlockLightLevel)`
+* `opacity: BlockLightLevel`
+
+### `BTC_StaticLightEmitter`
 Block emits constant amount of light.
+
+* `emission: BlockLightLevel`
