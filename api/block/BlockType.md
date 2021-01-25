@@ -10,6 +10,17 @@ UID of the block type, unique globally.
 ### `id: BlockID`
 ID of the block type, for the currently active game (uses the `Game.game` thread-local variable).
 
+# Defining blocks in YAML
+In YAML mod content configs, blocks are defined in the `(root)/blocks` sequence.
+
+The structure is following:
+```YAML
+- 
+	block: block.(uid)
+	components:
+		# sequence of components here
+```
+
 # Block functions
 The `BlockType` class contains a number of abstract functions that define the behaviour of the block type. These behaviour functions are implemented in a subclass of `BlockType` (the low-level way – not recommended) or are defined in various components of `ComponentBlockType` (the recommended way).
 

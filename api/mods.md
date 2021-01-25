@@ -20,9 +20,13 @@ license: (license)
 ## Mod contents
 You can define contents in files in the `content/` folder. The files can have any name, but they must have the `.yaml` suffix.
 
+Respective YAML definition structures are specified in respective classes documentation.
+
 Example file `sampleBlocks.yaml`:
 ```YAML
 blocks:
+	# block sequence here
+	
   - block: block.core.dirt
     components:
       - component: StaticOpacity
@@ -48,7 +52,3 @@ blocks:
           file: block/red_stained_glass.png
           alphaChannel: transparency
 ```
-
-## Defining blocks
-Format of defining blocks can be seen in the example above.
-List of block components and their settings can be found in the `api/block/component/` docs directory.
