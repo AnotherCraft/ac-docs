@@ -34,21 +34,10 @@ blocks:
       - component: UniformBlockShape
         texture: block/dirt.png
 
-  - block: block.core.stone
-    components:
-      - component: StaticOpacity
+worldgen:
+	# worlgen sequence here
 
-      - component: UniformBlockShape
-        texture: block/stone.png
-
-  - block: block.core.stainedGlass.red
-    components:
-      - component: StaticOpacity
-        opacity: 2
-
-      - component: UniformBlockShape
-        selfOpaque: true
-        texture:
-          file: block/red_stained_glass.png
-          alphaChannel: transparency
+	- worldgen: worldgen.core.overworld
+		files:
+			- worldgen/overworld.woglac
 ```
