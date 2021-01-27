@@ -26,6 +26,14 @@ blocks:
 Component names correspond with the API class names, just without the `BTC_` prefix.
 Properties are specified as key-value map within the component definition.
 
+Additionally, some shortcuts can be used:
+* `opacity: BlockLightLevel`
+  * Assigns the block a static opacity level (creates a `BTC_StaticOpacity` component)
+* `emitLight: BlockLightLevel`
+  * Makes the block emit light constantly (creates a `BTC_StaticLightEmitter` component)
+* `texture: RenderContextTexture`
+  * Assigns texture to the block (creates a `BTC_UniformBlockShape` component)
+
 ### `addComponent(component: BlockTypeComponent)`
 Adds component to the block type. This function can only be called in the initialization phase of the game.
 
