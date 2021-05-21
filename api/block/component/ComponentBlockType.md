@@ -64,16 +64,19 @@ Standard block, sides have the same texture, top and bottom have different textu
 Cross shape (+).
 
 * `texture: RenderContextTexture`
+* `boundingBoxSize: Vector3F`
 
 ### `BTC_DiagonalCrossShapeShape`
 Diagonal cross shape (X).
 
 * `texture: RenderContextTexture`
+* * `boundingBoxSize: Vector3F`
 
 ### `BTC_HashShape`
 Hash shape (#).
 
 * `texture: RenderContextTexture`
+* * `boundingBoxSize: Vector3F`
 
 ## Light-related components
 

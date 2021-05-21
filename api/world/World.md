@@ -6,6 +6,9 @@ World consists of `Chunks` that contain 16x16x256 blocks (x, y coordinates are f
 For determining what chunks should be loaded, the `chunkActivityDirector` of type `ChunkAnchorManager` is utilized.
 
 ## Properties
+### `world: World (thread-local)`
+Thread-local variable storing pointer to the current world.
+
 ### `game: Game`
 Game the world belongs to.
 
