@@ -19,6 +19,7 @@ First some basic things about mod loading:
   * `uid`: UID of the recipe in format `recipe.[modID].[yourRecipeID]`
   * `name`: Defaults to `Craft (output item names)`
   * `finalize`: Shorthand to creating a `Recipe.FinalizeCallback` component.
+  * `components`: List of components of the recipe (there can be multiple components of the same type).
 
 * Then, these components are available:
   * `ConsumeSingleItem`: Consumes single item from the input (item is destroyed during crafting)
@@ -53,3 +54,4 @@ First some basic things about mod loading:
 * Open inventory (right bottom corner) and move appropriate items on the left side of the crafting GUI.
 * Output preview should appear on the right side of the GUI.
 * Click on "Craft" to actually produce the output and to consume the input.
+* It will crash if you fill up the output inventory :D
