@@ -32,7 +32,7 @@ blocks:
       - component: StaticOpacity
     
       - component: UniformBlockShape
-        texture: block/dirt.png
+        texture: dirt.png
 
 worldgen:
 	# worlgen sequence here

@@ -20,7 +20,7 @@ blocks:
       - component: StaticOpacity
     
       - component: UniformBlockShape
-				texture: block/dirt.png
+				texture: dirt.png
 ```
 
 Component names correspond with the API class names, just without the `BTC_` prefix.
