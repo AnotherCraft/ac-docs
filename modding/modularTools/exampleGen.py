@@ -11,8 +11,8 @@ tools = {}
 
 def main():
 	os.mkdir("out")
-	
-	sourcePalette = Image.open("parts/sourcePalette.png")
+
+	sourcePalette = Image.open("sourcePalette.png").convert("RGBA")
 	regex = r"^(?:.*[/\\])?([^/]+)_[^/_]+$"
 
 	# List materials
@@ -26,14 +26,14 @@ def main():
 		print("Loading material:", k)
 		v["tex1"] = Image.open("materials/" + k + "_tex1.png").convert("RGBA")
 		
-		paletteImg = Image.open("materials/" + k + "_palette.png")
+		paletteImg = Image.open("materials/" + k + "_palette.png").convert("RGBA")
 		palette = {}
 		for y in range(min(sourcePalette.height, paletteImg.height)):
 			for x in range(min(sourcePalette.width, paletteImg.width)):
-				srcPx = sourcePalette.getpixel((x, y))
-				tgtPx = paletteImg.getpixel((x, y))
-				if srcPx != (0, 0, 0) and tgtPx != (0, 0, 0):
-					palette[srcPx] = tgtPx
+				sr, sg, sb, sa = sourcePalette.getpixel((x, y))
+				tr, tg, tb, ta = paletteImg.getpixel((x, y))
+				if ta != 0 and sa != 0:
+					palette[(sr, sg, sb)] = (tr, tg, tb)
 
 		v["palette"] = palette
 
