@@ -10,7 +10,10 @@ parts = {}
 tools = {}
 
 def main():
-	os.mkdir("out")
+	try:
+		os.mkdir("out")
+	except Exception:
+		pass
 
 	sourcePalette = Image.open("sourcePalette.png").convert("RGBA")
 	regex = r"^(?:.*[/\\])?([^/]+)_[^/_]+$"
@@ -85,6 +88,7 @@ def main():
 						texp[x, y] = (r, g, b, a)
 
 				img = Image.alpha_composite(img, tex)
+				# tex.save("out/" + name + "_" + str(pix) + "1.png")
 
 				tex = part["overlay"].copy()
 				texp = tex.load()
@@ -97,6 +101,7 @@ def main():
 						texp[x, y] = (r, g, b, a)
 
 				img = Image.alpha_composite(img, tex)
+				# tex.save("out/" + name + "_" + str(pix) + "2.png")
 
 			img.save("out/" + name + ".png")
 

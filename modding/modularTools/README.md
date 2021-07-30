@@ -14,7 +14,10 @@ Materials are defined by:
 ## Defining a tool part
 Tool parts are defined by:
 * A mask that is applied on the material texture, defining which parts of it are visible
-* An overlay image that is then put over the masked out material texture. Some colors of the overlay image are replaced with material specific colours (source palette -> material palette)
+* An overlay image that is then put over the masked out texture.
+  * Some colors of the overlay image are replaced with material specific colours (source palette -> material palette)
+  * You can use colours outside of the source palette. Those colours will simply not be changed and kept as is.
+  * You can use alpha & semi-transparent overlays.
 
 ## Tool icon generation
 Tool icon generation is done as follows:
@@ -24,6 +27,13 @@ Tool icon generation is done as follows:
       * Alpha is multipled with the tool part mask alpha.
    1. Overlay is drawn, colors from the source palette are replaced by the colors in the material palette
 	
+## Example
+>Axe: marble rod + wooden head
+1. Mask marble texture (![](materials/marble_tex1.png)) with rod mask (![](parts/rod_mask.png)) -> ![](img/p1.png)
+1. Take rod overlay (![](parts/rod_overlay.png)), replace source palette with marble palette ( ![](sourcePalette.png) -> ![](materials/marble_palette.png) ) -> ![](img/mp2.png)
+1. Mask wood texture (![](materials/wood_tex1.png)) with axe head mask (![](parts/axeHead_mask.png)) -> ![](img/mp3.png)
+1. Take axe head overlay (![](parts/axeHead_overlay.png)), replace source palette with wood palette ( ![](sourcePalette.png) -> ![](materials/wood_palette.png) ) -> ![](img/mp4.png)
+1. Combine all images: ![](img/p1.png) -> ![](img/p2.png) -> ![](img/p3.png) -> ![](img/p4.png)
 
 # Example generator
 In this directory, you can find an example tool generator for testing purposes written in Python 3. It generates every icon combination of `tools`, `parts` and `materials` into the `out` folder.
