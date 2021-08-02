@@ -46,7 +46,12 @@ In this directory, you can find an example tool generator for testing purposes w
   * `[partName]_overlay.png` defines overlay that is then drawn over the masked out material texture (colours that are defined in the `sourcePalette.png` are replaced by the material palette colours)
 * `tools` folder defines tools
   * Each tool is represented by `[toolName].yaml` YAML file.
-  * Root of the file is a map that should contain the `parts` entry. This entry contains list of tool parts the consists of.
+  * Root of the file is a map that should contain the `parts` entry. This entry contains list of parts the tool consists of. For example `axe.yaml`:
+```YAML
+parts:
+  - rod
+  - axeHead
+```
 
 ## Running the generator
 Installing prerequisities:
