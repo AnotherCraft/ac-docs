@@ -49,7 +49,8 @@ def main():
 	# Load parts
 	for k, v in parts.items():
 		print("Loading part:", k)
-		v["mask"] = Image.open("parts/" + k + "_mask.png").convert("RGBA")
+		maskFile = "parts/" + k + "_mask.png"
+		v["mask"] = Image.open(maskFile).convert("RGBA") if os.path.isfile(maskFile) else None
 		v["overlay"] = Image.open("parts/" + k + "_overlay.png")
 
 	# Load tools
@@ -62,7 +63,7 @@ def main():
 	for tk, tool in tools.items():
 		toolParts = tool["parts"]
 
-		for comb in itertools.combinations_with_replacement(materials.keys(), len(toolParts)):
+		for comb in itertools.product(materials.keys(), repeat=len(toolParts)):
 			img = Image.new("RGBA", (32, 32))
 
 			name = tk
@@ -77,18 +78,19 @@ def main():
 				material = materials[mk]
 
 				mask = part["mask"]
-				tex = material["tex1"].copy()
-				texp = tex.load()
-			
-				for y in range(tex.height):
-					for x in range(tex.width):
-						r, g, b, a = texp[x, y]
-						mp = mask.getpixel((x, y))
-						a = math.floor(a * mp[3] / 255)
-						texp[x, y] = (r, g, b, a)
+				if mask != None:
+					tex = material["tex1"].copy()
+					texp = tex.load()
+				
+					for y in range(tex.height):
+						for x in range(tex.width):
+							r, g, b, a = texp[x, y]
+							mp = mask.getpixel((x, y))
+							a = math.floor(a * mp[3] / 255)
+							texp[x, y] = (r, g, b, a)
 
-				img = Image.alpha_composite(img, tex)
-				# tex.save("out/" + name + "_" + str(pix) + "1.png")
+					img = Image.alpha_composite(img, tex)
+					# tex.save("out/" + name + "_" + str(pix) + "1.png")
 
 				tex = part["overlay"].copy()
 				texp = tex.load()

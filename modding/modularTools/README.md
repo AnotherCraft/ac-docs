@@ -43,6 +43,7 @@ In this directory, you can find an example tool generator for testing purposes w
   * `[materialName]_tex1.png` defines material texture
 * `parts` folder defines tool parts:
   * `[partName]_mask.png` defines mask for masking the material texture (only alpha channel is used)
+    * This file is optional. When not provided, the material texture is not applied at all and only the overlay is used.
   * `[partName]_overlay.png` defines overlay that is then drawn over the masked out material texture (colours that are defined in the `sourcePalette.png` are replaced by the material palette colours)
 * `tools` folder defines tools
   * Each tool is represented by `[toolName].yaml` YAML file.
