@@ -1,10 +1,9 @@
-from PIL import Image
+from PIL import Image, ImageChops
 import os
 import re
 import yaml
 import math
 import itertools
-import sys
 
 materials = {}
 parts = {}
@@ -37,9 +36,9 @@ def main():
 				sr, sg, sb, sa = sourcePalette.getpixel((x, y))
 				tr, tg, tb, ta = paletteImg.getpixel((x, y))
 				if ta != 0 and sa != 0:
-					if sr % 16 != 0 or sg % 16 != 0 or sb % 16 != 0:
-						print("Error: source palette color", sr, sg, sb, "does not have component values divisible by 16")
-						sys.exit()
+					if False and (sr % 16 != 0 or sg % 16 != 0 or sb % 16 != 0):
+						print("Error: source palette color ", sr, sg, sb, "does not have component values divisible by 16")
+						raise Exception()
 
 					palette[(sr, sg, sb)] = (tr, tg, tb)
 
@@ -56,7 +55,7 @@ def main():
 		print("Loading part:", k)
 		maskFile = "parts/" + k + "_mask.png"
 		v["mask"] = Image.open(maskFile).convert("RGBA") if os.path.isfile(maskFile) else None
-		v["overlay"] = Image.open("parts/" + k + "_overlay.png")
+		v["overlay"] = Image.open("parts/" + k + "_overlay.png").convert("RGBA")
 
 	# Load tools
 	for file in os.listdir("tools"):
@@ -74,12 +73,13 @@ def main():
 			name = tk
 
 			for pix, mk in enumerate(comb):
-				name += "__" + toolParts[pix] + "_" + mk
+				name += "__" + toolParts[pix]["part"] + "_" + mk
 
 			print("Generating: ", name)
 
 			for pix, mk in enumerate(comb):
-				part = parts[toolParts[pix]]
+				toolPart = toolParts[pix]
+				part = parts[toolPart["part"]]
 				material = materials[mk]
 
 				mask = part["mask"]
@@ -94,7 +94,7 @@ def main():
 							a = math.floor(a * mp[3] / 255)
 							texp[x, y] = (r, g, b, a)
 
-					img = Image.alpha_composite(img, tex)
+					img = Image.alpha_composite(img, ImageChops.offset(tex, toolPart["x"], toolPart["y"]))
 					# tex.save("out/" + name + "_" + str(pix) + "1.png")
 
 				tex = part["overlay"].copy()
@@ -107,7 +107,7 @@ def main():
 						(r, g, b) = palette.get((r, g, b), (r, g, b))
 						texp[x, y] = (r, g, b, a)
 
-				img = Image.alpha_composite(img, tex)
+				img = Image.alpha_composite(img, ImageChops.offset(tex, toolPart["x"], toolPart["y"]))
 				# tex.save("out/" + name + "_" + str(pix) + "2.png")
 
 			img.save("out/" + name + ".png")

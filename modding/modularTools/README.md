@@ -19,6 +19,7 @@ Tool parts are defined by:
   * Some colors of the overlay image are replaced with material specific colours (source palette -> material palette)
   * You can use colours outside of the source palette. Those colours will simply not be changed and kept as is.
   * You can use alpha & semi-transparent overlays.
+* All tool parts should be centered in the image.
 
 ## Tool icon generation
 Tool icon generation is done as follows:
@@ -27,6 +28,7 @@ Tool icon generation is done as follows:
    1. Material texture (material the current tool part is made of) masked out with the tool part mask is drawn
       * Alpha is multipled with the tool part mask alpha.
    1. Overlay is drawn, colors from the source palette are replaced by the colors in the material palette
+   1. Images from the both steps are applied to the resulting image with a defined offset (position of the tool part in the tool image)
 	
 ## Example
 >Axe: marble rod + wooden head
@@ -51,8 +53,13 @@ In this directory, you can find an example tool generator for testing purposes w
   * Root of the file is a map that should contain the `parts` entry. This entry contains list of parts the tool consists of. For example `axe.yaml`:
 ```YAML
 parts:
-  - rod
-  - axeHead
+  - part: rod
+	x: (x offset of the part)
+	y: (y offset of the part)
+
+  - part: axe_head
+	x: (x offset of the part)
+	y: (y offset of the part)
 ```
 
 ## Running the generator

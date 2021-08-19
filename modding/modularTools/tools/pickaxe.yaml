@@ -1,3 +1,8 @@
 parts:
-  - pickaxe_handle
-  - pickaxe_head
+  - part: rod
+    x: -1
+    y: 1
+
+  - part: pickaxe_head
+    x: 6
+    y: -6
