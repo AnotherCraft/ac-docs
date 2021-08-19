@@ -4,6 +4,7 @@ import re
 import yaml
 import math
 import itertools
+import sys
 
 materials = {}
 parts = {}
@@ -36,6 +37,10 @@ def main():
 				sr, sg, sb, sa = sourcePalette.getpixel((x, y))
 				tr, tg, tb, ta = paletteImg.getpixel((x, y))
 				if ta != 0 and sa != 0:
+					if sr % 16 != 0 or sg % 16 != 0 or sb % 16 != 0:
+						print("Error: source palette color", sr, sg, sb, "does not have component values divisible by 16")
+						sys.exit()
+
 					palette[(sr, sg, sb)] = (tr, tg, tb)
 
 		v["palette"] = palette

@@ -10,6 +10,7 @@ Materials, tools and tool parts can be easily added by mods.
 Materials are defined by:
 * A 32×32 px texture of the material
 * A color palette (replacing colours from `sourcePalette.png`)
+  * For optimization reasons, all source replacement colours in `sourcePalette.png` must have all components disible by 16.
 
 ## Defining a tool part
 Tool parts are defined by:
