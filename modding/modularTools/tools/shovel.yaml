@@ -1,0 +1,8 @@
+parts:
+  - part: rod
+    x: -2
+    y: 4
+
+  - part: shovel_head
+    x: 7
+    y: -5

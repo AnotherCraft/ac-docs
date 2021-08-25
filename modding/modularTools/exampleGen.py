@@ -36,7 +36,7 @@ def main():
 				sr, sg, sb, sa = sourcePalette.getpixel((x, y))
 				tr, tg, tb, ta = paletteImg.getpixel((x, y))
 				if ta != 0 and sa != 0:
-					if False and (sr % 16 != 0 or sg % 16 != 0 or sb % 16 != 0):
+					if (sr % 16 != 0 or sg % 16 != 0 or sb % 16 != 0):
 						print("Error: source palette color ", sr, sg, sb, "does not have component values divisible by 16")
 						raise Exception()
 
