@@ -276,6 +276,12 @@ Float perlin2D(Float octaveSize, Float seed)
 ```
 
 Returns 2D Perlin noise value [-1–1].
+## `perlin3D` 
+```WOGLAC
+Float perlin3D(Float octaveSize, Float seed)
+```
+
+Returns 3D Perlin noise value [-1–1].
 ## `voronoi2D` 
 ```WOGLAC
 Float voronoi2D(Float octaveSize, Float seed, Float resultType, Float metricExponent)
@@ -406,6 +412,18 @@ Float pow(Float v, Float e)
 ```
 
 Returns power of `v` to the exponent `e`.
+## `sin` 
+```WOGLAC
+Float sin(Float x)
+```
+
+Returns `sin(x)`, `x` is in radians.
+## `cos` 
+```WOGLAC
+Float cos(Float x)
+```
+
+Returns `cos(x)`, `x` is in radians.
 # Basic math functions 
 
 ## `inverse` 

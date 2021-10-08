@@ -2,7 +2,8 @@
 Everything is in little endian
 
 ## Root
-* `chunks[] : ChunkData` - variable length record repeated until EOF, each record contains data of one chunk
+* `chunkCount: UInt32` number of chunks contained in the file
+* `chunks: ChunkData[chunkCount]` - variable length record array, each record contains data of one chunk
 	* Chunks are **not in any particular order**
 
 ## `ChunkData`
