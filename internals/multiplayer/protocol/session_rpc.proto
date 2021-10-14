@@ -1,0 +1,58 @@
+// Code generated with goa v3.5.2, DO NOT EDIT.
+//
+// SessionRPC protocol buffer definition
+//
+// Command:
+// $ goa gen github.com/AnotherCraft/ac-server/api/design -o ../
+
+syntax = "proto3";
+
+package session_rpc;
+
+option go_package = "/session_rpcpb";
+
+// Service is the SessionRPC service interface.
+service SessionRPC {
+	// Changes the block state
+	rpc ChangeBlock (ChangeBlockRequest) returns (ChangeBlockResponse);
+	// Listens position updates from a client.
+	rpc ReportPosition (stream ReportPositionStreamingRequest) returns (ReportPositionResponse);
+}
+
+message ChangeBlockRequest {
+	// Session ID, must be submitted when opening the stream.
+	string session_id = 1;
+	// Profile slot
+	uint64 profile_slot = 2;
+	// Block update data
+	ChangeBlockData data = 3;
+}
+
+message ChangeBlockData {
+	// Position of the block
+	AbsolutePosition pos = 1;
+	// New block type
+	uint32 new_block_id = 2;
+}
+
+message AbsolutePosition {
+	// X coord pos
+	sint32 abs_x = 1;
+	// Y coord pos
+	sint32 abs_y = 2;
+	// Z coord pos
+	sint32 abs_z = 3;
+}
+
+message ChangeBlockResponse {
+}
+
+message ReportPositionStreamingRequest {
+	// Position of the player
+	AbsolutePosition pos = 1;
+	// Opaque client data
+	bytes data = 2;
+}
+
+message ReportPositionResponse {
+}

@@ -38,6 +38,7 @@ Constructs a 2-dimensional vector.
 ## `float3` 
 ```WOGLAC
 Float3 float3(Float x, Float y, Float z)
+Float3 float3(Float2 xy, Float z)
 Float3 float3(Float v)
 ```
 
@@ -68,24 +69,31 @@ Float2 xy(Float3 vec)
 ```
 
 Returns the `x` and `y` components of a vector.
+## `normalize` 
+```WOGLAC
+Float2 normalize(Float2 v)
+Float3 normalize(Float3 v)
+```
+
+Returns the vector normalized.
 ## `length` 
 ```WOGLAC
-Float length(Float2 vec1)
-Float length(Float3 vec1)
+Float length(Float2 v)
+Float length(Float3 v)
 ```
 
 Returns euclidean length of a vector.
 ## `lengthExp` 
 ```WOGLAC
-Float lengthExp(Float2 vec1, Float exp)
-Float lengthExp(Float3 vec1, Float exp)
+Float lengthExp(Float2 v, Float exp)
+Float lengthExp(Float3 v, Float exp)
 ```
 
 Returns length of a vector with the dimensional exponent being `exp` (1 = manhattan, 2 = euclidean).
 ## `manhattanLength` 
 ```WOGLAC
-Float manhattanLength(Float2 vec1)
-Float manhattanLength(Float3 vec1)
+Float manhattanLength(Float2 v)
+Float manhattanLength(Float3 v)
 ```
 
 Returns manhattan length of a vector.
@@ -121,6 +129,12 @@ Float distanceTo2D(Float3 targetWorldPos)
 ```
 
 Returns distance from the current block to `targetWorldPos` (in world coordinates). Only considers X and Y coordinates.
+## `distanceToLine` 
+```WOGLAC
+Float distanceToLine(Float3 p, Float3 a, Float3 b)
+```
+
+Returns distance of the point `p` to a line defined by points `a` and `b`.
 # Sampling functions 
 
 ## `sampleOffset` 
@@ -155,6 +169,13 @@ Bool sampleAt(Bool variable, Float3 worldPos)
 Block sampleAt(Block variable, Float3 worldPos)
 Rule sampleAt(Rule variable, Float3 worldPos)
 ComponentNode sampleAt(ComponentNode variable, Float3 worldPos)
+Float sampleAt(Float variable, Float2 worldPos)
+Float2 sampleAt(Float2 variable, Float2 worldPos)
+Float3 sampleAt(Float3 variable, Float2 worldPos)
+Bool sampleAt(Bool variable, Float2 worldPos)
+Block sampleAt(Block variable, Float2 worldPos)
+Rule sampleAt(Rule variable, Float2 worldPos)
+ComponentNode sampleAt(ComponentNode variable, Float2 worldPos)
 ```
 
 Returns value of `variable` sampled on the given world position. The position doesn't have to be constant.

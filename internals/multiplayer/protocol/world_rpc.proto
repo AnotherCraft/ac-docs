@@ -1,0 +1,133 @@
+// Code generated with goa v3.5.2, DO NOT EDIT.
+//
+// WorldRPC protocol buffer definition
+//
+// Command:
+// $ goa gen github.com/AnotherCraft/ac-server/api/design -o ../
+
+syntax = "proto3";
+
+package world_rpc;
+
+option go_package = "/world_rpcpb";
+
+// Service is the WorldRPC service interface.
+service WorldRPC {
+	// Gets player's current absolute pos.
+	rpc AbsolutePos (AbsolutePosRequest) returns (AbsolutePosResponse);
+	// Gets chunk data by its positon.
+	rpc Chunk (ChunkRequest) returns (ChunkResponse);
+	// Broadcasts near players profiles.
+	rpc Players (PlayersRequest) returns (stream PlayersResponse);
+	// Broadcasts position updates, except the player's.
+	rpc PlayersMovement (PlayersMovementRequest) returns (stream PlayersMovementResponse);
+	// Broadcasts block updates, can be used to invalidate chunk cache or
+// individual blocks.
+	rpc BlockUpdates (BlockUpdatesRequest) returns (stream BlockUpdatesResponse);
+}
+
+message AbsolutePosRequest {
+	// Session ID, must be submitted when opening the stream.
+	string session_id = 1;
+	// Profile slot
+	uint64 profile_slot = 2;
+}
+
+message AbsolutePosResponse {
+	// Absolute position of player.
+	AbsolutePosition pos = 1;
+}
+
+message AbsolutePosition {
+	// X coord pos
+	sint32 abs_x = 1;
+	// Y coord pos
+	sint32 abs_y = 2;
+	// Z coord pos
+	sint32 abs_z = 3;
+}
+
+message ChunkRequest {
+	// Session ID, must be submitted when opening the stream.
+	string session_id = 1;
+	// Profile slot
+	uint64 profile_slot = 2;
+	// Position of the chunk to fetch
+	ChunkPosition chunk_pos = 3;
+}
+
+message ChunkPosition {
+	// Chunk X coord
+	uint32 chunk_x = 1;
+	// Chunk Y coord
+	uint32 chunk_y = 2;
+}
+
+message ChunkResponse {
+	// Full chunk data.
+	ChunkData chunk = 1;
+}
+
+message ChunkData {
+	// Arbitrary chunk Z-offset
+	sint32 chunk_z = 1;
+	// Block IDs in the chunk
+	repeated uint32 blocks = 2;
+}
+
+message PlayersRequest {
+	// Session ID, must be submitted when opening the stream.
+	string session_id = 1;
+	// Profile slot
+	uint64 profile_slot = 2;
+}
+
+message PlayersResponse {
+	// Player's identification handle
+	uint32 player_handle = 1;
+	// Player's profile
+	Profile profile = 2;
+}
+
+message Profile {
+	// Slot of the game profile
+	uint64 slot = 1;
+	// Name of the character
+	string nick = 2;
+	// PubKey or address (base58) of the account.
+	string pub_key = 3;
+	// Set for custodial accounts only. Private key for signing.
+	bytes priv_key = 4;
+	// Timestamp of profile creation.
+	uint64 created_at = 5;
+}
+
+message PlayersMovementRequest {
+	// Session ID, must be submitted when opening the stream.
+	string session_id = 1;
+	// Profile slot
+	uint64 profile_slot = 2;
+}
+
+message PlayersMovementResponse {
+	// Player's identification handle
+	uint32 player_handle = 1;
+	// Player position report
+	AbsolutePosition pos = 2;
+	// Opaque client data
+	bytes data = 3;
+}
+
+message BlockUpdatesRequest {
+	// Session ID, must be submitted when opening the stream.
+	string session_id = 1;
+	// Profile slot
+	uint64 profile_slot = 2;
+}
+
+message BlockUpdatesResponse {
+	// Position of the block
+	AbsolutePosition pos = 1;
+	// New block type
+	uint32 new_block_id = 2;
+}
