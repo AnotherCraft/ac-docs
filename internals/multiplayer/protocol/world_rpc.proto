@@ -17,8 +17,8 @@ service WorldRPC {
 	rpc AbsolutePos (AbsolutePosRequest) returns (AbsolutePosResponse);
 	// Gets chunk data by its positon.
 	rpc Chunk (ChunkRequest) returns (ChunkResponse);
-	// Broadcasts near players profiles.
-	rpc Players (PlayersRequest) returns (stream PlayersResponse);
+	// Get player's public profile by handle.
+	rpc PlayerProfile (PlayerProfileRequest) returns (PlayerProfileResponse);
 	// Broadcasts position updates, except the player's.
 	rpc PlayersMovement (PlayersMovementRequest) returns (stream PlayersMovementResponse);
 	// Broadcasts block updates, can be used to invalidate chunk cache or
@@ -75,31 +75,14 @@ message ChunkData {
 	repeated uint32 blocks = 2;
 }
 
-message PlayersRequest {
-	// Session ID, must be submitted when opening the stream.
-	string session_id = 1;
-	// Profile slot
-	uint64 profile_slot = 2;
-}
-
-message PlayersResponse {
+message PlayerProfileRequest {
 	// Player's identification handle
 	uint32 player_handle = 1;
-	// Player's profile
-	Profile profile = 2;
 }
 
-message Profile {
-	// Slot of the game profile
-	uint64 slot = 1;
-	// Name of the character
-	string nick = 2;
-	// PubKey or address (base58) of the account.
-	string pub_key = 3;
-	// Set for custodial accounts only. Private key for signing.
-	bytes priv_key = 4;
-	// Timestamp of profile creation.
-	uint64 created_at = 5;
+message PlayerProfileResponse {
+	// Player's nickname
+	string nick = 1;
 }
 
 message PlayersMovementRequest {
@@ -116,6 +99,8 @@ message PlayersMovementResponse {
 	AbsolutePrecisePosition pos = 2;
 	// Opaque client data
 	bytes data = 3;
+	// Flag if the player is online
+	bool online = 4;
 }
 
 message BlockUpdatesRequest {

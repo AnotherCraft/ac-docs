@@ -13,10 +13,20 @@ option go_package = "/session_rpcpb";
 
 // Service is the SessionRPC service interface.
 service SessionRPC {
+	// Terminates the session and sends announces of clean logging out
+	rpc CloseSession (CloseSessionRequest) returns (CloseSessionResponse);
 	// Changes the block state
 	rpc ChangeBlock (ChangeBlockRequest) returns (ChangeBlockResponse);
 	// Reports position updates from a client.
-	rpc ReportPosition (stream ReportPositionStreamingRequest) returns (ReportPositionResponse);
+	rpc ReportPosition (ReportPositionRequest) returns (ReportPositionResponse);
+}
+
+message CloseSessionRequest {
+	// Session ID, must be submitted to close.
+	string session_id = 1;
+}
+
+message CloseSessionResponse {
 }
 
 message ChangeBlockRequest {
@@ -47,15 +57,20 @@ message AbsolutePosition {
 message ChangeBlockResponse {
 }
 
-message ReportPositionStreamingRequest {
+message ReportPositionRequest {
 	// Session ID, must be submitted when opening the stream.
 	string session_id = 1;
 	// Profile slot
 	uint64 profile_slot = 2;
+	// Player position report
+	PlayerPositionReport report = 3;
+}
+
+message PlayerPositionReport {
 	// Position of the player
-	AbsolutePrecisePosition pos = 3;
+	AbsolutePrecisePosition pos = 1;
 	// Opaque client data
-	bytes data = 4;
+	bytes data = 2;
 }
 
 message AbsolutePrecisePosition {
