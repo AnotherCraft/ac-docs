@@ -35,20 +35,20 @@ message AbsolutePosRequest {
 
 message AbsolutePosResponse {
 	// Absolute position of player.
-	AbsolutePosition pos = 1;
+	AbsolutePrecisePosition pos = 1;
 }
 
-message AbsolutePosition {
-	// X coord pos
-	sint32 abs_x = 1;
-	// Y coord pos
-	sint32 abs_y = 2;
-	// Z coord pos
-	sint32 abs_z = 3;
+message AbsolutePrecisePosition {
+	// X coord float pos
+	float abs_x = 1;
+	// Y coord float pos
+	float abs_y = 2;
+	// Z coord float pos
+	float abs_z = 3;
 }
 
 message ChunkRequest {
-	// Session ID, must be submitted when opening the stream.
+	// Session ID when loading the chunk.
 	string session_id = 1;
 	// Profile slot
 	uint64 profile_slot = 2;
@@ -58,9 +58,9 @@ message ChunkRequest {
 
 message ChunkPosition {
 	// Chunk X coord
-	uint32 chunk_x = 1;
+	sint32 chunk_x = 1;
 	// Chunk Y coord
-	uint32 chunk_y = 2;
+	sint32 chunk_y = 2;
 }
 
 message ChunkResponse {
@@ -113,7 +113,7 @@ message PlayersMovementResponse {
 	// Player's identification handle
 	uint32 player_handle = 1;
 	// Player position report
-	AbsolutePosition pos = 2;
+	AbsolutePrecisePosition pos = 2;
 	// Opaque client data
 	bytes data = 3;
 }
@@ -130,4 +130,13 @@ message BlockUpdatesResponse {
 	AbsolutePosition pos = 1;
 	// New block type
 	uint32 new_block_id = 2;
+}
+
+message AbsolutePosition {
+	// X coord pos
+	sint32 abs_x = 1;
+	// Y coord pos
+	sint32 abs_y = 2;
+	// Z coord pos
+	sint32 abs_z = 3;
 }

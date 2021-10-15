@@ -15,7 +15,7 @@ option go_package = "/session_rpcpb";
 service SessionRPC {
 	// Changes the block state
 	rpc ChangeBlock (ChangeBlockRequest) returns (ChangeBlockResponse);
-	// Listens position updates from a client.
+	// Reports position updates from a client.
 	rpc ReportPosition (stream ReportPositionStreamingRequest) returns (ReportPositionResponse);
 }
 
@@ -48,10 +48,23 @@ message ChangeBlockResponse {
 }
 
 message ReportPositionStreamingRequest {
+	// Session ID, must be submitted when opening the stream.
+	string session_id = 1;
+	// Profile slot
+	uint64 profile_slot = 2;
 	// Position of the player
-	AbsolutePosition pos = 1;
+	AbsolutePrecisePosition pos = 3;
 	// Opaque client data
-	bytes data = 2;
+	bytes data = 4;
+}
+
+message AbsolutePrecisePosition {
+	// X coord float pos
+	float abs_x = 1;
+	// Y coord float pos
+	float abs_y = 2;
+	// Z coord float pos
+	float abs_z = 3;
 }
 
 message ReportPositionResponse {
