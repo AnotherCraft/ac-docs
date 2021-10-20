@@ -24,6 +24,9 @@ using ChunkBlockIndex = UInt16;
 using BlockID = UInt16;
 using BlockSmallData = UInt16;
 
+# Block big data is serialized data of a block in a format that is not specified here. The format is arbitrary for each block type/block component.
+using BlockBigData = Data;
+
 # Message from the server notifying the client that it has entered a world
 # Client does not initiate any world enters
 struct WorldEnterNotification $server {
@@ -95,7 +98,7 @@ struct ChunkData $server $world {
 
 		# Arbitrary extra data for blocks that require it
 		# Format of this data is not exactly specified and can be implemented differently for different block types
-		data @1 :Data;
+		data @1 :BlockBigData;
 	}
 	bigData @7 :List(BigDataRecord);
 }
@@ -108,7 +111,7 @@ struct BlockCreatedNotification $server $world {
 	pos @1 :BlockWorldPos;
 	id @2 :BlockID;
 	smallData @3 :BlockSmallData;
-	bigData @4 :Data;
+	bigData @4 :BlockBigData;
 
 	# Reason why the block was created - can affect animation, sound effects etc
 	reason @5 :Identifier;
