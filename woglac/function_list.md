@@ -260,25 +260,25 @@ Returns component-local seed.
 Float randC(Float seed)
 ```
 
-Returns random value [0–1], constant everywhere.
+Returns random value [0â€“1], constant everywhere.
 ## `randPC` 
 ```WOGLAC
 Float randPC(Float seed)
 ```
 
-Returns random value [0–1], different for each chunk.
+Returns random value [0â€“1], different for each chunk.
 ## `rand2D` 
 ```WOGLAC
 Float rand2D(Float seed)
 ```
 
-Returns random value [0–1], different for every column.
+Returns random value [0â€“1], different for every column.
 ## `rand3D` 
 ```WOGLAC
 Float rand3D(Float seed)
 ```
 
-Returns random value [0–1], different for every block.
+Returns random value [0â€“1], different for every block.
 ## `valueNoisePC` 
 ```WOGLAC
 Float valueNoisePC(Float octaveSize, Float seed, Float nodeValue)
@@ -296,13 +296,13 @@ Linearly interpolates between values at node points that are determined by `node
 Float perlin2D(Float octaveSize, Float seed)
 ```
 
-Returns 2D Perlin noise value [-1–1].
+Returns 2D Perlin noise value [-1â€“1].
 ## `perlin3D` 
 ```WOGLAC
 Float perlin3D(Float octaveSize, Float seed)
 ```
 
-Returns 3D Perlin noise value [-1–1].
+Returns 3D Perlin noise value [-1â€“1].
 ## `voronoi2D` 
 ```WOGLAC
 Float voronoi2D(Float octaveSize, Float seed, Float resultType, Float metricExponent)
@@ -378,7 +378,7 @@ Float2 clamp(Float2 v, Float2 min, Float2 max)
 Float3 clamp(Float3 v, Float3 min, Float3 max)
 ```
 
-Returns value `v` limited to bounds [`min–max`].
+Returns value `v` limited to bounds [`minâ€“max`].
 ## `clamp01` 
 ```WOGLAC
 Float clamp01(Float v)
