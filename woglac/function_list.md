@@ -321,9 +321,9 @@ Same as voronoi2D, except each node now accepts `coloring`; there are no edges b
 * `resultType=10` -> weighted distance from center
 * `resultType=11` -> nearest point coloring
 * `resultType=12` -> weighted distance from border
-## `poissonDisc2D` 
+## `poissonDisc2DBool` 
 ```WOGLAC
-Bool poissonDisc2D(Float seed, Float radius)
+Bool poissonDisc2DBool(Float seed, Float radius)
 ```
 
 Spreads points pseudorandomly on the 2D plane. Each point has a `radius` (2D dimensionality) that can be between 1 and 16. Distance of any two points is not less than sum of their radii. Returns true if there is a point on the current position or false if there isn't.
@@ -427,6 +427,14 @@ Float3 round(Float3 v)
 ```
 
 
+## `fract` 
+```WOGLAC
+Float fract(Float v)
+Float2 fract(Float2 v)
+Float3 fract(Float3 v)
+```
+
+Returns fractional part of the number `x - trunc(x)`.
 ## `pow` 
 ```WOGLAC
 Float pow(Float v, Float e)
@@ -495,6 +503,16 @@ Float3 div(Float3 a, Float b)
 ```
 
 
+## `mod` 
+```WOGLAC
+Float mod(Float a, Float b)
+Float2 mod(Float2 a, Float2 b)
+Float2 mod(Float2 a, Float b)
+Float3 mod(Float3 a, Float3 b)
+Float3 mod(Float3 a, Float b)
+```
+
+Floating point modulo (C++ fmod)
 # Basic logic functions 
 
 ## `logOr` 
