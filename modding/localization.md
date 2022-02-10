@@ -27,10 +27,14 @@ If only one key is specified, as with the `key4` example, the variant has one co
 Translations with more contidions are attempted to be applied first. Order of application attempts for translations with the same condition count is not specified.
 
 ## Translation string macros
-* `::^` Makes the nearest following letter capitalized (removes whitespaces between the tag and the letter)
 * `$param` Returns value of a given parameter
 * `$param{k1:v1;k2:v2;...}` Returns value of a given parameter, passes given parameters to the parameter `TranslatableString`. If `*` is passed as a list item, passes all parameters from the parent context. If only `key` is specified, without the `: value`, value is set to `1`.
 * `$$JOIN{param;glue;k1:v1;...}` Joins array `param` (iterates `param_0`, `param_1` and so on until unexisting param key is reached) with glue `glue`. Passes parameters same as above.
+
+## General string macros
+* `::^` Makes the nearest following letter capitalized (removes whitespaces between the tag and the letter)
+* `::NAME:{ content :}` Various styling markup:
+  * `footnote`: Unimportant information (makes it small and gray)
 
 ## Translation guidelines
 * Item, block, entity names: capitalized (`Iron Block`, `Wooden Axe`, `Zebra`)
