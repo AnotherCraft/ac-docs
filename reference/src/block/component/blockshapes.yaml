@@ -7,6 +7,8 @@ records:
     components:
       - BTC_BoxCollider
       - BTC_AllSidesAttachable
+    seeAlso:
+      - BTC_UniformBlockShape
     properties:
       - name: selfOpaque
         type: bool

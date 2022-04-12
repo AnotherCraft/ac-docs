@@ -1,13 +1,13 @@
 import std.stdio;
 import std.file;
 import std.format;
-static import dyaml;
+import std.path;
+import std.array;
 
 import record;
+import yaml;
 
 static immutable string outRootDir = "reference";
-
-static Record[string] records;
 
 void main() {
 	if(outRootDir.exists)
@@ -19,19 +19,20 @@ void main() {
 	foreach(filePath; "src".dirEntries("*.yaml", SpanMode.breadth)) {
 		writeln("Parsing ", filePath, "...");
 
-		auto yaml = dyaml.Loader.fromFile(filePath);
+		auto yaml = dyaml.Loader.fromFile(filePath).load();
 
 		string outDirectory = outRootDir;
-		if(yaml.containsKey("outDirectory"))
-			outDirectory ~= "/" ~ yaml["outDirectory"].as!string;
+		if(auto v = yaml.stringVal("outDirectory"))
+			outDirectory ~= "/" ~ v;
 
-		outDirectory.mkdirRecursive();
+		outDirectory.mkdirRecurse();
 
-		foreach(recYaml; yaml["records"]) {
+		foreach(dyaml.Node recYaml; yaml["records"]) {
 			Record r = new Record();
 			r.yaml = recYaml;
 			r.name = recYaml["name"].as!string;
 			r.filePath = "%s/%s.md".format(outDirectory, r.name);
+			r.pathToRoot = outRootDir.asRelativePath(outDirectory).array;
 
 			records[r.name] = r;
 		}
