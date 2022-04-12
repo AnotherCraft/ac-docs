@@ -1,0 +1,9 @@
+name "ac-docs"
+description "Documentation generator for AnotherCraft"
+authors "Danol"
+
+targetPath "build"
+
+sourcePaths "src/generator"
+
+dependency "dyaml" version="0.8.5"

@@ -1,0 +1,1 @@
+The generator scans all `.yaml` files in this folder and its subfolders and processes them.

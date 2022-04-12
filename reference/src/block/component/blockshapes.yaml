@@ -1,0 +1,22 @@
+outDirectory: block/component/shape
+records:
+  - name: BTC_BlockShapeBase
+    type: typeComponent
+    parent: BTC_Composite
+    description: Base class for all block shaped blocks (=the block is a box, six sides, of size 1).
+    components:
+      - BTC_BoxCollider
+      - BTC_AllSidesAttachable
+    properties:
+      - name: selfOpaque
+        type: bool
+        description: Whether the block is self-opaque. Self-opaque blocks do not render sides that neighbour with the same block type. This has no effect if the block itself is opaque, but if the sides are transparent (or alpha tested), this switch results in inner sides not being rendered. The most common usage is with glass type blocks.
+
+      - name: interactsWithParticles
+        type: bool
+        default: true
+
+      - name: setOpacity
+        type: bool
+        default: true
+        description: If true (and if the opacity is not set), makes the block fully opaque in terms of light propagation.
