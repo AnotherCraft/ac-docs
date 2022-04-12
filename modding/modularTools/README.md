@@ -34,7 +34,7 @@ Tool icon generation is done as follows:
 >Axe: marble rod + wooden head
 1. Mask marble texture (![](materials/marble_tex1.png)) with rod mask (![](parts/rod_mask.png)) -> ![](img/p1.png)
 1. Take rod overlay (![](parts/rod_overlay.png)), replace source palette with marble palette ( ![](sourcePalette.png) -> ![](materials/marble_palette.png) ) -> ![](img/mp2.png)
-1. Mask wood texture (![](materials/wood_tex1.png)) with axe head mask (![](parts/axeHead_mask.png)) -> ![](img/mp3.png)
+1. Mask wood texture (![](materials/wood_tex1.png)) with axe head mask (![](parts/axe_head_mask.png)) -> ![](img/mp3.png)
 1. Take axe head overlay (![](parts/axeHead_overlay.png)), replace source palette with wood palette ( ![](sourcePalette.png) -> ![](materials/wood_palette.png) ) -> ![](img/mp4.png)
 1. Combine all images: ![](img/p1.png) -> ![](img/p2.png) -> ![](img/p3.png) -> ![](img/p4.png)
 
