@@ -14,10 +14,10 @@
 
 ```yaml
 langKey:
-	{key1: val, key2: val}: Translation string
-	{key3: val}: Translation string 2
-	key4: Translation string 3
-	default: Default translation
+  {key1: val, key2: val}: Translation string
+  {key3: val}: Translation string 2
+  key4: Translation string 3
+  default: Default translation
 ```
 
 Here, they `key/val` are conditions that must all apply for a given key to be applied. Parameters specified by `keyX` must have the same value as `val`. Since the parameter values passed with `TranslatableString` are also translatable strings, they have to be translated first; this is executed with no parameters passed to the parameter translation.
