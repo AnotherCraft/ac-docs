@@ -5,7 +5,7 @@ AnotherCraft contains a simple yet hopefully powerful enough system for generati
   * Composite component
   * Provides leaves shape rendering
   * Applies Difficult terrain status effect
-  * Gets destroyyed when neighbouring tree trunk is destroyed
+  * Gets destroyed when neighbouring tree trunk is destroyed
 * `TreeTrunk`
   * Provides trunk shape (with varying thickness and connecting branches)
   * Larger branches collide with player
