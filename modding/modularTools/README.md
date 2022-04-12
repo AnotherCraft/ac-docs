@@ -54,12 +54,12 @@ In this directory, you can find an example tool generator for testing purposes w
 ```YAML
 parts:
   - part: rod
-	x: (x offset of the part)
-	y: (y offset of the part)
+		x: (x offset of the part)
+		y: (y offset of the part)
 
   - part: axe_head
-	x: (x offset of the part)
-	y: (y offset of the part)
+		x: (x offset of the part)
+		y: (y offset of the part)
 ```
 
 ## Running the generator
