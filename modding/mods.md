@@ -25,7 +25,7 @@ Respective YAML definition structures are specified in respective classes docume
 Example file `sampleBlocks.yaml`:
 ```YAML
 blocks:
-	# block sequence here
+  # block sequence here
 	
   - block: block.core.dirt
     components:
@@ -35,9 +35,9 @@ blocks:
         texture: dirt.png
 
 worldgen:
-	# worlgen sequence here
+  # worlgen sequence here
 
-	- worldgen: worldgen.core.overworld
-		files:
-			- worldgen/overworld.woglac
+  - worldgen: worldgen.core.overworld
+    files:
+      - worldgen/overworld.woglac
 ```
