@@ -59,11 +59,13 @@ public:
 
 		if (!usedIn.empty)
 			result ~= "\n> **Used in:**<br>\n> %s\n".format(
-				usedIn.sort.uniq.map!(x => recordLink(x)).join(", "));
+				usedIn.uniq.map!(x => recordLink(x))
+					.array.sort.join(", "));
 
 		if (yaml.containsKey("seeAlso"))
 			result ~= "\n> **See also:**<br>\n> %s\n".format(yaml["seeAlso"].sequence!string
 					.map!(x => recordLink(x))
+					.array.sort
 					.join(", "));
 
 		result ~= "\n";
@@ -75,15 +77,20 @@ public:
 		{
 			result ~= "## Properties\n";
 
-			foreach (pyaml; yaml["properties"].sequence)
+			foreach (pyaml; yaml["properties"].sequence.array.sort!((a, b) => a["name"].as!string < b["name"]
+					.as!string))
 			{
 				string titleNote;
 				if (auto v = pyaml.stringVal("titleNote"))
 					titleNote = " (%s)".format(v);
 
-				result ~= "### `%s`: %s%s\n".format(
+				string typeStr;
+				if (auto v = pyaml.stringVal("type"))
+					typeStr = ": %s".format(recordLink(v));
+
+				result ~= "### `%s`%s%s\n".format(
 					pyaml.stringVal("name"),
-					recordLink(pyaml.stringVal("type")),
+					typeStr,
 					titleNote
 				);
 
@@ -105,7 +112,8 @@ private:
 	{
 		immutable bool[string] predefinedRecords = [
 			"bool": true,
-			"int": true
+			"int": true,
+			"float": true,
 		];
 
 		if (recordName in predefinedRecords)
@@ -135,7 +143,7 @@ private:
 
 	string processMarkdown(string str)
 	{
-		auto r = ctRegex!r"#\[([a-zA-Z0-9_]+)\]";
+		auto r = ctRegex!r"\$\[([a-zA-Z0-9_]+)\]";
 		return str.replaceAll!(c => recordLink(c[1]))(r);
 	}
 

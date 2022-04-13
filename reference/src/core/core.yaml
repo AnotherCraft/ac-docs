@@ -1,4 +1,7 @@
 records:
+  - name: Identifier
+    description: Basically just a string.
+    
   - name: Vector3F
     description: |
       3D vector floating point class. Can be initialized in the following ways:

@@ -3,6 +3,6 @@
 
 Block shape with all sides of the same texture.
 ## Properties
-### `texture`: <strike>RenderContextTexture</strike>
+### `texture`: [RenderContextTexture](../../../core/RenderContextTexture.md)
 
 Texture of the block.

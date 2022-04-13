@@ -1,0 +1,140 @@
+records:
+  - name: RenderContextConfig
+    seeAlso: [RenderContextTexture]
+    descrption: Configuration of a rendering context. Used mostly as part of the $[RenderContextTexture].
+    properties:
+      - name: animation
+        type: Identifier
+        description: |
+          Animation of the texture (implemented in the vertex shader).
+
+          For example: `windOnlyTop`, `windWholeBlock`
+
+      - name: shaderEffect
+        type: Identifier
+        description: |
+          Shader effect (implemented in fragment shader).
+
+          For example: `hologram`
+
+      - name: alphaChannel
+        default: unused
+        description: |
+          How the alpha channel is used.
+
+          Accepted values are:
+          * `unused`: The alpha channel is not used.
+          * `alphaTest`: The alpha channel is used for alpha testing - if the pixel alpha is below `alphaTestThreshold`, the pixel is not rendered at all, otherwise it is rendered at full opacity. Alpha testing is much faster than proper transparency, so it is recommended to design blocks for alpha testing instead of transparency.
+          * `alphaTestConfigurable`: Same as alpha test, but the alpha testing can be disabled in settings (`settings_graphics_alphaTesting`) - can be used for example for tree leaves.
+          * `transparency`: The alpha channel is used for proper transparency. Rendering transparent textures is quite demanding and it is recommended to rather use alpha testing. Transparent blocks do not cast shadows.
+
+      - name: cutoffDistance
+        type: float
+        default: 128
+        description: Distance at which the cutoff is realized (what the cutoff actually does is defined through other properties)
+
+      - name: alphaTestThreshold
+        type: float
+        default: 0.9
+        description: Threshold for alpha testing
+
+      - name: textureRepeatX
+        type: bool
+        default: true
+        description: Indicate that the texture should repeat along the X axis (stuff might not work properly as a lot of block shapes rely on greedy meshing, use with caution in blocks).
+      
+      - name: textureRepeatY
+        type: bool
+        default: true
+        description: Indicate that the texture should repeat along the Y axis (stuff might not work properly as a lot of block shapes rely on greedy meshing, use with caution in blocks).
+
+      - name: mipMapping
+        type: bool
+        default: true
+      
+      - name: smoothTexturing
+        type: bool
+        default: true
+        description: Alternative to ugly `GL_NEAREST` filtering when looking on pixelart textures from up-close.
+
+      - name: naturalTexturing
+        type: bool
+        default: false
+        description: Experimental, ignore
+
+      - name: doNotInvertNormalZ
+        type: bool
+        default: false
+        description: If `true`, does not invert the `z` component of the normal when looking on the block from behind.
+
+      - name: faceCulling
+        type: bool
+        default: true
+        description: Whether face culling is enabled. Makes the texture not rendered when looking from behind, saves performance. Is usually turned off automatically for block shapes where appropriate.
+
+      - name: alphaTestDisableInShadowMap
+        type: bool
+        default: false
+        description: If `true`, the alpha testing is not enabled in shadow maps at all, making the texture to cast shadow regardless of whether the pixels are transparent or not. Saves performance.
+
+      - name: alphaTestDisableInCoarseShadowMap
+        type: bool
+        default: true
+        description: If `true`, the alpha testing is not enable in coarse shadow maps - the detail is lost on shadows further from the player.
+
+      - name: customAlphaPremultiplication
+        type: bool
+        default: false
+        description: Indicates that the texture is alpha premultiplied (RGB is multiplied by A).
+
+      - name: disableShadows
+        type: bool
+        default: false
+        description: Makes the texture not cast any shadow. Saves performance.
+
+      - name: disableCoarseShadows
+        type: bool
+        default: false
+        description: Makes the texture not cast any shadow on coarse shadow maps (further from the player). Saves performance. Recommended for small stuff like grass.
+
+      - name: alphaTestDistanceCutoff
+        type: bool
+        default: false
+        description: Disables alpha testing for the texture if it is more than `cutoffDistance` blocks from the camera.
+
+      - name: renderingDistanceCutoff
+        type: bool
+        default: false
+        description: Disables rendering of the texture altogether if it is more than `cutoffDistance` blocks from the camera.
+
+      - name: doNotRenderWhenAlphaTestingDisabled
+        type: bool
+        default: false
+        description: Disables rendering of the texture altogether if configurable alpha testing is disabled (`settings_graphics_alphaTesting`).
+
+      
+
+  - name: RenderContextTexture
+    parent: RenderContextConfig
+    description: |
+      Class representing a texture with defined properties ($[RenderContextConfig]).
+
+      Can be used in to ways:
+      * Defining the texture through properties, for example:
+      ```YAML
+      texture:
+        file: img.png
+        faceCulling: false
+      ```
+      * Defining inline with default properties, just the file:
+      ```YAML
+      texture: img.png
+      ```
+
+    properties:
+      - name: texture
+        type: string
+        description: File/file path of the texture file.
+
+      - name: config
+        type: RenderContextConfig
