@@ -6,18 +6,22 @@
 
 Gives the block an axis-aligned box-shaped collider.
 ## Properties
-### `friction`: [Vector3F](../../../core/Vector3F.md)
+### `friction`
+> **Type:** [Vector3F](../../../core/Vector3F.md)<br>
 > **Default value:** `30`<br>
 
 Friction the collider applies, separate for each direction.
-### `offset`: [Vector3F](../../../core/Vector3F.md)
+### `offset`
+> **Type:** [Vector3F](../../../core/Vector3F.md)<br>
 > **Default value:** `0`<br>
 
 Offset of the box collider from the bottom center.
-### `rayCastOnly`: bool
+### `rayCastOnly`
+> **Type:** bool<br>
 > **Default value:** `false`<br>
 
 If set to true, the collider does not provide physical collision, but only makes the collider pickable by mouse (ray cast) -> the block can be interacted with/damaged through the collider.
-### `size`: [Vector3F](../../../core/Vector3F.md)
+### `size`
+> **Type:** [Vector3F](../../../core/Vector3F.md)<br>
 > **Default value:** `1`<br>
 

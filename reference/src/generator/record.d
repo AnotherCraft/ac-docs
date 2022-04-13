@@ -84,15 +84,13 @@ public:
 				if (auto v = pyaml.stringVal("titleNote"))
 					titleNote = " (%s)".format(v);
 
-				string typeStr;
-				if (auto v = pyaml.stringVal("type"))
-					typeStr = ": %s".format(recordLink(v));
-
-				result ~= "### `%s`%s%s\n".format(
+				result ~= "### `%s`%s\n".format(
 					pyaml.stringVal("name"),
-					typeStr,
 					titleNote
 				);
+
+				if (auto v = pyaml.stringVal("type"))
+					result ~= "> **Type:** %s<br>\n".format(recordLink(v));
 
 				if (auto v = pyaml.stringVal("default"))
 					result ~= "> **Default value:** `%s`<br>\n".format(v);
@@ -114,6 +112,7 @@ private:
 			"bool": true,
 			"int": true,
 			"float": true,
+			"string": true,
 		];
 
 		if (recordName in predefinedRecords)

@@ -19,8 +19,10 @@ texture: img.png
 ```
 
 ## Properties
-### `config`: [RenderContextConfig](RenderContextConfig.md)
+### `config`
+> **Type:** [RenderContextConfig](RenderContextConfig.md)<br>
 
-### `texture`: <strike>string</strike>
+### `texture`
+> **Type:** string<br>
 
 File/file path of the texture file.
