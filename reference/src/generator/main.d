@@ -3,6 +3,7 @@ import std.file;
 import std.format;
 import std.path;
 import std.array;
+import std.algorithm;
 
 import record;
 import yaml;
@@ -25,6 +26,8 @@ void main() {
 		if(auto v = yaml.stringVal("outDirectory"))
 			outDirectory ~= "/" ~ v;
 
+		string pathToRoot = outDirectory.relativePath(outRootDir).pathSplitter.map!(x => "..").buildPath;
+
 		outDirectory.mkdirRecurse();
 
 		foreach(dyaml.Node recYaml; yaml["records"]) {
@@ -32,7 +35,7 @@ void main() {
 			r.yaml = recYaml;
 			r.name = recYaml["name"].as!string;
 			r.filePath = "%s/%s.md".format(outDirectory, r.name);
-			r.pathToRoot = outRootDir.asRelativePath(outDirectory).array;
+			r.pathToRoot = pathToRoot;
 
 			records[r.name] = r;
 		}
