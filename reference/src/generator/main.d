@@ -49,4 +49,21 @@ void main()
 	// Generate files from records
 	foreach (Record r; records)
 		std.file.write(r.filePath, r.generateContent());
+
+	// Generate index file
+	{
+		string str;
+		str ~= "# List of all classes\n";
+
+		Record[][string] recs;
+		foreach(Record r; records)
+			recs.require(r.filePath.dirName, null) ~= r;
+
+		foreach(string dir; recs.keys.array.sort) {
+			str ~= "### `%s`\n".format(dir.relativePath(outRootDir));
+			str ~= recs[dir].sort!((a, b) => a.name < b.name).map!(r => "[%s](%s)".format(r.name, r.filePath.relativePath(outRootDir))).join(", ");
+			str ~= "\n";
+		}
+		std.file.write(outRootDir.buildPath("README.md"), str);
+	}
 }
