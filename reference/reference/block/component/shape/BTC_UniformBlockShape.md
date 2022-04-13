@@ -1,5 +1,5 @@
 # `BTC_UniformBlockShape`
-> **Parent:** [BTC_BlockShapeBase](..\..\..\../reference/block/component/shape/BTC_BlockShapeBase.md)<br>
+> **Parent:** [BTC_BlockShapeBase](../../../../reference/block/component/shape/BTC_BlockShapeBase.md)<br>
 
 Block shape with all sides of the same texture.
 ## Properties

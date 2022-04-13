@@ -26,7 +26,7 @@ void main() {
 		if(auto v = yaml.stringVal("outDirectory"))
 			outDirectory ~= "/" ~ v;
 
-		string pathToRoot = outDirectory.relativePath(outRootDir).pathSplitter.map!(x => "..").buildPath;
+		string pathToRoot = outDirectory.relativePath(outRootDir).pathSplitter.map!(x => "..").buildPath.replace('\\', '/');
 
 		outDirectory.mkdirRecurse();
 

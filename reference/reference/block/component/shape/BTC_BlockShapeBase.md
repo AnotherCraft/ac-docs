@@ -1,7 +1,7 @@
 # `BTC_BlockShapeBase`
 > **Parent:** <span style='color: red;'>BTC_Composite</span><br>
 > **Components:** <span style='color: red;'>BTC_BoxCollider</span>, <span style='color: red;'>BTC_AllSidesAttachable</span><br>
-> **See also:** [BTC_UniformBlockShape](..\..\..\../reference/block/component/shape/BTC_UniformBlockShape.md)<br>
+> **See also:** [BTC_UniformBlockShape](../../../../reference/block/component/shape/BTC_UniformBlockShape.md)<br>
 
 Base class for all block shaped blocks (=the block is a box, six sides, of size 1).
 ## Properties
