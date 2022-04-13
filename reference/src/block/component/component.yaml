@@ -1,0 +1,5 @@
+records:
+  - name: BlockTypeComponent
+    seeAlso:
+      - BlockType
+    description: Base class for all block components

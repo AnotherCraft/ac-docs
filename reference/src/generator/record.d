@@ -24,13 +24,23 @@ public:
 	string name;
 	string filePath;
 	dyaml.Node yaml;
-	Record[] children;
+
+	Record[] children, usedIn;
 
 public:
 	void process()
 	{
 		if (auto v = yaml.recordVal("parent"))
 			v.children ~= this;
+
+		if (yaml.containsKey("properties"))
+		{
+			foreach (pyaml; yaml["properties"].sequence)
+			{
+				if (auto v = pyaml.recordVal("type"))
+					v.usedIn ~= this;
+			}
+		}
 	}
 
 	string generateContent()
@@ -46,6 +56,10 @@ public:
 		if (!children.empty)
 			result ~= "\n> **Children:**<br>\n> %s\n".format(children.map!(x => recordLink(x))
 					.join(", "));
+
+		if (!usedIn.empty)
+			result ~= "\n> **Used in:**<br>\n> %s\n".format(
+				usedIn.sort.uniq.map!(x => recordLink(x)).join(", "));
 
 		if (yaml.containsKey("seeAlso"))
 			result ~= "\n> **See also:**<br>\n> %s\n".format(yaml["seeAlso"].sequence!string
@@ -64,14 +78,14 @@ public:
 			foreach (pyaml; yaml["properties"].sequence)
 			{
 				string titleNote;
-				if(auto v = pyaml.stringVal("titleNote"))
+				if (auto v = pyaml.stringVal("titleNote"))
 					titleNote = " (%s)".format(v);
 
 				result ~= "### `%s`: %s%s\n".format(
 					pyaml.stringVal("name"),
 					recordLink(pyaml.stringVal("type")),
 					titleNote
-					);
+				);
 
 				if (auto v = pyaml.stringVal("default"))
 					result ~= "> **Default value:** `%s`<br>\n".format(v);
@@ -116,10 +130,11 @@ private:
 
 	string pathToRecord(Record r)
 	{
-		return r ? r.filePath.relativePath(filePath.dirName) : null;
+		return r ? r.filePath.relativePath(filePath.dirName).replace('\\', '/') : null;
 	}
 
-	string processMarkdown(string str) {
+	string processMarkdown(string str)
+	{
 		auto r = ctRegex!r"#\[([a-zA-Z0-9_]+)\]";
 		return str.replaceAll!(c => recordLink(c[1]))(r);
 	}

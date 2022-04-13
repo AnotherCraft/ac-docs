@@ -1,5 +1,5 @@
 # `BTC_BlockShapeBase`
-> **Parent:** [BTC_Composite](..\..\BTC_Composite.md)<br>
+> **Parent:** [BTC_Composite](../util/BTC_Composite.md)<br>
 
 > **Children:**<br>
 > [BTC_UniformBlockShape](BTC_UniformBlockShape.md)
@@ -11,7 +11,7 @@ Base class for all block shaped blocks (=the block is a box, six sides, of size 
 ## Properties
 ### `attachable`: <strike>BTC_AllSidesAttachable</strike> (Composite)
 
-### `collider`: <strike>BTC_BoxCollider</strike> (Composite)
+### `collider`: [BTC_BoxCollider](../collision/BTC_BoxCollider.md) (Composite)
 
 ### `selfOpaque`: bool
 > **Default value:** `false`<br>

@@ -27,7 +27,7 @@ void main()
 
 		string outDirectory = buildPath(outRootDir, filePath.dirName.relativePath(srcRootDir));
 		if (auto v = yaml.stringVal("outDirectory"))
-			outDirectory = buildPath(outRootDir, v);
+			outDirectory = buildPath(outDirectory, v);
 
 		outDirectory.mkdirRecurse();
 
