@@ -8,40 +8,45 @@ import std.algorithm;
 import record;
 import yaml;
 
-static immutable string outRootDir = "reference";
+void main()
+{
+	immutable string outRootDir = "reference".absolutePath;
+	immutable string srcRootDir = "src".absolutePath;
 
-void main() {
-	if(outRootDir.exists)
+	if (outRootDir.exists)
 		outRootDir.rmdirRecurse();
 
 	outRootDir.mkdir();
-	
+
 	// Scan and create records
-	foreach(filePath; "src".dirEntries("*.yaml", SpanMode.breadth)) {
+	foreach (filePath; srcRootDir.dirEntries("*.yaml", SpanMode.breadth))
+	{
 		writeln("Parsing ", filePath, "...");
 
 		auto yaml = dyaml.Loader.fromFile(filePath).load();
 
-		string outDirectory = outRootDir;
-		if(auto v = yaml.stringVal("outDirectory"))
-			outDirectory ~= "/" ~ v;
-
-		string pathToRoot = outDirectory.relativePath(outRootDir).pathSplitter.map!(x => "..").buildPath.replace('\\', '/');
+		string outDirectory = buildPath(outRootDir, filePath.dirName.relativePath(srcRootDir));
+		if (auto v = yaml.stringVal("outDirectory"))
+			outDirectory = buildPath(outRootDir, v);
 
 		outDirectory.mkdirRecurse();
 
-		foreach(dyaml.Node recYaml; yaml["records"]) {
+		foreach (dyaml.Node recYaml; yaml["records"])
+		{
 			Record r = new Record();
 			r.yaml = recYaml;
 			r.name = recYaml["name"].as!string;
 			r.filePath = "%s/%s.md".format(outDirectory, r.name);
-			r.pathToRoot = pathToRoot;
 
 			records[r.name] = r;
 		}
 	}
 
+	// Process records
+	foreach (Record r; records)
+		r.process();
+
 	// Generate files from records
-	foreach(Record r; records)
+	foreach (Record r; records)
 		std.file.write(r.filePath, r.generateContent());
 }

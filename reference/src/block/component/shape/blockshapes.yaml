@@ -1,14 +1,18 @@
-outDirectory: block/component/shape
 records:
   - name: BTC_BlockShapeBase
     parent: BTC_Composite
     description: Base class for all block shaped blocks (=the block is a box, six sides, of size 1).
-    components:
-      - BTC_BoxCollider
-      - BTC_AllSidesAttachable
     seeAlso:
       - BTC_UniformBlockShape
     properties:
+      - name: attachable
+        type: BTC_AllSidesAttachable
+        titleNote: Composite
+
+      - name: collider
+        type: BTC_BoxCollider
+        titleNote: Composite
+
       - name: selfOpaque
         type: bool
         default: false

@@ -1,8 +1,8 @@
 # `BTC_UniformBlockShape`
-> **Parent:** [BTC_BlockShapeBase](../../../../reference/block/component/shape/BTC_BlockShapeBase.md)<br>
+> **Parent:** [BTC_BlockShapeBase](BTC_BlockShapeBase.md)<br>
 
 Block shape with all sides of the same texture.
 ## Properties
-### `texture`: <span style='color: red;'>RenderContextTexture</span>
+### `texture`: <strike>RenderContextTexture</strike>
 
 Texture of the block.
