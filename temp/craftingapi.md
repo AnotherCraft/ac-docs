@@ -44,7 +44,7 @@ First some basic things about mod loading:
       * For `Recipe.FinalizeCallback.callback` it's `(args: ac.CraftingResult)`.
 
 ## ModAPI documentation
-* `mod.ts` has to contain `export * from "ac/acexport";` (for exporting some ABI stuff)
+* `mod.ts` has to contain `export * from "ac/export";` (for exporting some ABI stuff)
 * It is also recommended to use `import * as ac from "ac";` for importing of all the AnotherCraft sweet sweet API.
 * API runtime is in `bin/api/assemblyscript/ac`, there's not much of it currently.
 

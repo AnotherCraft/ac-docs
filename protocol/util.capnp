@@ -1,10 +1,8 @@
 @0xe25fc37df132e181;
 
-# Annotation denoting that the struct is a client->server message
-annotation client(struct) :Void;
-
-# Annotation denoting that the struct is a server->client message
-annotation server(struct) :Void;
+# Put everything into the "acp" (AC Protocol) namespace
+using Cxx = import "/capnp/c++.capnp";
+$Cxx.namespace("ACP");
 
 # Identifiers serve to replace often used strings (user defined enums etc) with a single integer value - to speed up working with them and to reduce transmission size.
 # The idea is that there is a sparse String <-> Identifier mapping. This mapping can be different for client->server and server->client messages.
@@ -13,7 +11,7 @@ annotation server(struct) :Void;
 using Identifier = UInt32;
 
 # See Identifier
-struct IdentifierMapping $client $server {
+struct IdentifierMapping {
 	struct Record {
 		id @0 :Identifier;
 		text @1 :Text;
@@ -35,7 +33,7 @@ struct Variant {
 	}
 }
 
-struct Error $client $server {
+struct Error {
 	# UID of the error - something like error.login.badPassword
 	uid @0 :Identifier;
 

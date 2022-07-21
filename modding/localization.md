@@ -35,6 +35,8 @@ Translations with more contidions are attempted to be applied first. Order of ap
 * `::^` Makes the nearest following letter capitalized (removes whitespaces between the tag and the letter)
 * `::NAME:{ content :}` Various styling markup:
   * `footnote`: Unimportant information (makes it small and gray)
+  * `positive`: Something good (good stat)
+  * `negative`: Something bad (bad stat)
 
 ## Translation guidelines
 * Item, block, entity names: capitalized (`Iron Block`, `Wooden Axe`, `Zebra`)
