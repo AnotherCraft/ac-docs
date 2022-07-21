@@ -22,18 +22,7 @@ struct ChunkPos {
 using ChunkBlockIndex = UInt16;
 
 using BlockID = UInt16;
-using BlockSmallData = UInt16;
-
-# Extra data a block wants to serialize aside from the 2 byte small data
-struct BlockBigData {
-	smallData @0 :List(BlockSmallData);
-	bigData @1 :List(BigDataRecord);
-
-	# Capnp doesn't support List(AnyStruct)
-	struct BigDataRecord {
-		data @0 :AnyStruct;
-	}
-}
+using BlockSmallData = UInt8;
 
 # Request for chunk data sent from client to server.
 # The server responds with either ChunkData or ChunkRequestFailure.
@@ -59,12 +48,8 @@ struct ChunkData {
 	zOffset @1 :ChunkPosT;
 
 	struct SparseBlockRecord {
-    # Position of the block in the chunk
-    ix @0 :ChunkBlockIndex;
-
-    # Block ID
+    cbi @0 :ChunkBlockIndex;
     id @1 :BlockID;
-
     smallData @2 :BlockSmallData;
   }
 	
@@ -89,40 +74,18 @@ struct ChunkData {
 		}
 	}
 
-	struct BigDataRecord {
-		ix @0 :ChunkBlockIndex;
-
-		# Arbitrary extra data for blocks that require it
-		# Format of this data is not exactly specified and can be implemented differently for different block types
-		data @1 :BlockBigData;
+	# Extra small data for blocks with multiple components using small data
+	struct ExtraSmallDataRecord {
+		cbi @0 :ChunkBlockIndex;
+		data @1 :List(BlockSmallData);
 	}
-	bigData @6 :List(BigDataRecord);
-}
+	extraSmallData @6 :List(ExtraSmallDataRecord);
 
-struct WorldChunkData {
-	world @0 :Util.UID;
-	data @1 :ChunkData;
-}
-
-# Message from server to client to inform that a block has been created somewhere.
-# The message means that the block has been changed from air to some block type.
-# This message is ONLY sent by SERVER. Client does NOT inform that he created some blocks. It instead informs that the client did an action, the result of that action is determined by a server.
-struct BlockInit {
-	world @0 :Util.UID;
-	pos @1 :BlockWorldPos;
-	blockID @2 :BlockID;
-	smallData @3 :BlockSmallData;
-	bigData @4 :BlockBigData;
-
-	# Reason why the block was created - can affect animation, sound effects etc
-	reason @5 :Util.Identifier;
-}
-
-# Message notyfing about block being destroyed
-struct BlockUninit {
-	world @0 :Util.UID;
-	pos @1 :BlockWorldPos;
-
-	# Reason why the block was destroyed - can affect animation, sound effects etc
-	reason @2 :Util.Identifier;
+	# Extra explicitly serialized data by the components
+	struct ExtraDataRecord {
+		cbi @0 :ChunkBlockIndex;
+		component @1 :Util.ID;
+		data @2 :AnyPointer;
+	}
+	extraData @7 :List(ExtraDataRecord);
 }

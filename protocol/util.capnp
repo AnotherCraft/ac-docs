@@ -22,6 +22,8 @@ struct IdentifierMapping {
 # Unique global identifier. It is supposed to be prefixed with the type of the identifier - for example 'block.XXX' or 'world.XX' or 'item.XXX'
 using UID = Identifier;
 
+using ID = UInt16;
+
 struct Variant {
 	union {
 		int @0 :Int64;
