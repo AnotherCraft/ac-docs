@@ -21,6 +21,14 @@ struct IDMapping {
 	uids @0 :List(Util.UID);
 }
 
+struct IDMappingList {
+	struct Record {
+		manager @0 :Util.Identifier;
+		mapping @1 :IDMapping;
+	}
+	list @0 :List(Record);
+}
+
 struct ModInfo {
 	uid @0 :Util.UID;
 	version @1 :Text;
