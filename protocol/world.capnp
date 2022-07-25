@@ -77,13 +77,9 @@ struct ChunkData {
 	# Extra explicitly serialized data by the components
 	struct ExtraDataRecord {
 		cbi @0 :ChunkBlockIndex;
-		data @1 :List(BlockExtraDataRecord); # List of extra data, can also incorporate extra small data (List(BlockExtraSmallData)). Order of the data is determined by the #blockUID_serializeDataMapping
+		data @1 :List(Util.AnyStructStruct); # List of extra data, can also incorporate extra small data (List(BlockExtraSmallData)). Order of the data is determined by the #blockUID_serializeDataMapping
 	}
 	extraData @6 :List(ExtraDataRecord);
-}
-
-struct BlockExtraDataRecord {
-	data @0 :AnyStruct;
 }
 
 struct BlockExtraSmallData {

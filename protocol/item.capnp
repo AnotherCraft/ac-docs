@@ -6,14 +6,10 @@ $Cxx.namespace("ACP");
 
 using Util = import "util.capnp";
 
-struct ItemDataRecord {
-	data @0 :AnyStruct;
-}
-
 struct ItemStack {
 	count @0 :UInt16;
 	id @1 :Util.ID; # Item type ID
-	data @2 :List(ItemDataRecord); # Flat array of item data; item count * serialize data count
+	data @2 :List(Util.AnyStructStruct); # Flat array of item data; item count * serialize data count
 }
 
 struct Inventory {
@@ -22,5 +18,5 @@ struct Inventory {
 
 struct Item {
 	id @0 :Util.ID;
-	data @1 :List(ItemDataRecord);
+	data @1 :List(Util.AnyStructStruct);
 }

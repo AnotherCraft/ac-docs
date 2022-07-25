@@ -26,13 +26,22 @@ using ID = UInt16;
 
 struct Variant {
 	union {
-		int @0 :Int64;
-		float @1 :Float64;
-		string @2 :Text;
-		data @3 :Data;
-		null @4 :Void;
+		null @0 :Void;
+		int32 @1 :Int32;
+		float32 @2 :Float32;
+		string @3 :Text;
+		data @4 :Data;
 		bool @5 :Bool;
+		ptr @6 :AnyPointer;
 	}
+}
+
+struct AnyPointerStruct {
+	data @0 :AnyPointer;
+}
+
+struct AnyStructStruct {
+	data @0 :AnyStruct;
 }
 
 struct Error {
