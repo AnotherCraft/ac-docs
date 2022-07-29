@@ -17,13 +17,21 @@ struct Entity {
 
 struct Actor {
 	persistentHandle @0 :Util.PersistentHandle;
-	statusEffects @1 :List(StatusEffect);
-	stats @2 :List(ActorStat);
+	statusEffects @1 :ActorStatusEffects;
+	stats @2 :ActorStats;
 }
 
-struct StatusEffect {
+struct ActorStatusEffects {
+	list @0 :List(ActorStatusEffect);
+}
+
+struct ActorStatusEffect {
 	type @0 :Util.ID;
 	data @1 :List(Util.AnyStructStruct);
+}
+
+struct ActorStats {
+	persistentStats @0 :List(ActorStat);
 }
 
 struct ActorStat {
