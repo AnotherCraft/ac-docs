@@ -13,6 +13,13 @@ struct BlockWorldPos {
 	z @2 :BlockWorldPosT;
 }
 
+using EntityWorldPosT = Float32;
+struct EntityWorldPos {
+	x @0 :Float32;
+	y @1 :Float32;
+	z @2 :Float32;
+}
+
 using ChunkPosT = Int32;
 struct ChunkPos {
 	x @0 :ChunkPosT;
@@ -49,7 +56,7 @@ struct ChunkData {
 
 	struct SparseBlockRecord {
     cbi @0 :ChunkBlockIndex;
-    id @1 :BlockID;
+    type @1 :BlockID;
     smallData @2 :BlockSmallData;
   }
 	

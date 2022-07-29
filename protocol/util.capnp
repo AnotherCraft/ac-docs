@@ -10,6 +10,9 @@ $Cxx.namespace("ACP");
 # The idea is that when client/server is about to send a message with an identifier that has not been used yet, it prepares a new IdentifierMapping packet and enqueues it BEFORE the packet that first uses the mapping.
 using Identifier = UInt32;
 
+# Handle for uniquely identifying various object like item instances, inventories and such, persistent across the whole game
+using PersistentHandle = UInt64;
+
 # See Identifier
 struct IdentifierMapping {
 	struct Record {

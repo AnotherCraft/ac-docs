@@ -7,16 +7,18 @@ $Cxx.namespace("ACP");
 using Util = import "util.capnp";
 
 struct ItemStack {
-	count @0 :UInt16;
-	id @1 :Util.ID; # Item type ID
+	type @0 :Util.ID; # Item type ID
+	persistentHandles @1 :List(Util.PersistentHandle);
 	data @2 :List(Util.AnyStructStruct); # Flat array of item data; item count * serialize data count
 }
 
 struct Inventory {
-	slots @0 :List(ItemStack);
+	persistentHandle @0 :Util.PersistentHandle;
+	slots @1 :List(ItemStack);
 }
 
 struct Item {
-	id @0 :Util.ID;
-	data @1 :List(Util.AnyStructStruct);
+	type @0 :Util.ID;
+	persistentHandle @1 :Util.PersistentHandle;
+	data @2 :List(Util.AnyStructStruct);
 }
