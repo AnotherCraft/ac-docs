@@ -27,6 +27,8 @@ using UID = Identifier;
 
 using ID = UInt16;
 
+using GameTime = Float32;
+
 struct Variant {
 	union {
 		null @0 :Void;

@@ -33,3 +33,8 @@ struct ModInfo {
 	uid @0 :Util.UID;
 	version @1 :Text;
 }
+
+struct SaveSyncData {
+	persistentHandleCounter @0 :Util.PersistentHandle;
+	gameTime @1 :Util.GameTime;
+}
