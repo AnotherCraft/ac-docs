@@ -62,3 +62,9 @@ struct Error {
 	}
 	params @2 :List(Param);
 }
+
+struct Vector3F {
+	x @0 :Float32;
+	y @1 :Float32;
+	z @2 :Float32;
+}

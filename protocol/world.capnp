@@ -5,19 +5,13 @@ using Cxx = import "/capnp/c++.capnp";
 $Cxx.namespace("ACP");
 
 using Util = import "util.capnp";
+using Entity = import "entity.capnp";
 
 using BlockWorldPosT = Int32;
 struct BlockWorldPos {
 	x @0 :BlockWorldPosT;
 	y @1 :BlockWorldPosT;
 	z @2 :BlockWorldPosT;
-}
-
-using EntityWorldPosT = Float32;
-struct EntityWorldPos {
-	x @0 :Float32;
-	y @1 :Float32;
-	z @2 :Float32;
 }
 
 using ChunkPosT = Int32;
@@ -87,6 +81,8 @@ struct ChunkData {
 		data @1 :List(Util.AnyStructStruct); # List of extra data, can also incorporate extra small data (List(BlockExtraSmallData)). Order of the data is determined by the #blockUID_serializeDataMapping
 	}
 	extraData @6 :List(ExtraDataRecord);
+
+	entities @7 :List(Entity.Entity);
 }
 
 struct BlockExtraSmallData {
