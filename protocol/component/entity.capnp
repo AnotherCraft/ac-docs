@@ -23,3 +23,9 @@ struct ETCDCharacter {
 struct ETCDPlayer {
 
 }
+
+struct ETCDTreeSapling {
+	seed @0 :UInt64;
+	remainingGrowPoints @1 :Int32;
+	saplingType @2 :Util.ID;
+}
