@@ -29,3 +29,11 @@ struct ETCDTreeSapling {
 	remainingGrowPoints @1 :Int32;
 	saplingType @2 :Util.ID;
 }
+
+struct ETCDDumbAnimalAI {
+	freakOutTimeout @0 :Util.GameTime;
+}
+
+struct ETCDLootInventory {
+	lootInventory @0 :Item.Inventory;
+}
