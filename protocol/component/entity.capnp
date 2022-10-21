@@ -21,12 +21,15 @@ struct ETCDCharacter {
 }
 
 struct ETCDPlayer {
-
+	handCraftingInputInventory @0 :Item.Inventory;
+	handCraftingIntermediateOutputInventory @1 :Item.Inventory;
+	handCraftingOutputInventory @2 :Item.Inventory;
 }
 
 struct ETCDTreeSapling {
 	seed @0 :UInt64;
 	remainingGrowPoints @1 :Int32;
+	queuedGrowPoints @3: Int32;
 	saplingType @2 :Util.ID;
 }
 
@@ -36,4 +39,15 @@ struct ETCDDumbAnimalAI {
 
 struct ETCDLootInventory {
 	lootInventory @0 :Item.Inventory;
+}
+
+struct ETCDDespawnTimeout {
+	despawnTime @0 :Util.GameTime;
+}
+
+struct ETCDRayPhysics {
+	speed @0 :Util.Vector3F;
+	spawnTime @1 :Util.GameTime;
+	spawningEntity @2 :Util.PersistentHandle;
+	hasHit @3 :Bool;
 }

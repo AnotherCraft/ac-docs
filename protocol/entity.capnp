@@ -5,22 +5,16 @@ using Cxx = import "/capnp/c++.capnp";
 $Cxx.namespace("ACP");
 
 using Util = import "util.capnp";
-
-using EntityWorldPosT = Float32;
-struct EntityWorldPos {
-	x @0 :Float32;
-	y @1 :Float32;
-	z @2 :Float32;
-}
+using World = import "world.capnp";
 
 struct Entity {
 	type @0 :Util.ID;
 	persistentHandle @1 :Util.PersistentHandle;
-	pos @2 :EntityWorldPos;
+	pos @2 :World.DecimalWorldPos;
 	data @3 :List(Util.AnyStructStruct);
 	actor @4 :Actor;
 
-	aimPos @5 :EntityWorldPos;
+	aimPos @5 :World.DecimalWorldPos;
 }
 
 struct Actor {

@@ -6,7 +6,21 @@ $Cxx.namespace("ACP");
 
 using Util = import "../util.capnp";
 using Item = import "../item.capnp";
+using Entity = import "../entity.capnp";
 
-struct BTCDChest {
+struct BTCDInventory {
 	inv @0 :Item.Inventory;
+}
+
+struct BTCDManualCraftingStation {
+	inputInventory @0 :Item.Inventory;
+	intermediateOutputInventory @1 :Item.Inventory;
+	outputInventory @2 :Item.Inventory;
+}
+
+struct BTCDAutoCraftingStation {
+	inputInventory @0 :Item.Inventory;
+	intermediateOutputInventory @1 :Item.Inventory;
+	outputInventory @2 :Item.Inventory;
+	actor @3 :Entity.Actor;
 }

@@ -56,7 +56,7 @@ Standard block with all sides having the same texture.
 ### `BTC_UniformSidesBlockShape : BTC_BlockSHapeBase`
 Standard block, sides have the same texture, top and bottom have different textures.
 
-* `sidesTexture: RenderContextTexture`
+* `sideTexture: RenderContextTexture`
 * `topTexture: RenderContextTexture`
 * `bottomTexture: RenderContextTexture`
 
