@@ -7,12 +7,16 @@ $Cxx.namespace("ACP");
 using Util = import "../util.capnp";
 using Item = import "../item.capnp";
 
-struct ITCDStoredMaterialProperty {
-	material @0 :Util.ID;
-}
-
 struct ITCDStoredNumberProperty {
 	value @0 :Float32;
+}
+
+struct ITCDStoredStringProperty {
+	value @0 :Text;
+}
+
+struct ITCDStoredMaterialProperty {
+	material @0 :Util.ID;
 }
 
 struct ITCDModularItem {
