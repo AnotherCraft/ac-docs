@@ -16,6 +16,10 @@ struct BTCDStoredStringProperty {
 	value @0 :Text;
 }
 
+struct BTCDStoredMaterialProperty {
+	value @0 :Util.ID;
+}
+
 struct BTCDMinedItemDrop {
 	itemPersistentHandle @0 :Util.PersistentHandle;
 }
