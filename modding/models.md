@@ -33,7 +33,7 @@ AnotherCraft supports defining models in OpenJSCAD `.js` files. The files are au
 The compiling to `.obj` files is done using the [JSCAD package](https://github.com/AnotherCraft/ac-jscad) that is shiped with the AC client.
 
 ### Developing/preview of the OpenJSCAD files
-When creating the JSCAD models, it's of course very beneficial to have a live preview of the model. This can be done using the [openjscad.xyz website](https://openjscad.xyz/). Loading the model up is a bit unintuitive, as the `Load a JSCAD project` works with project directories, not individual files, but you can load the single `.js` model file up by simply drag & dropping it to the window.
+When creating the JSCAD models, it's of course very beneficial to have a live preview of the model. This can be done using the [openjscad.xyz website](https://openjscad.xyz/) (Chrome recommended). Loading the model up is a bit unintuitive, as the `Load a JSCAD project` works with project directories, not individual files, but you can load the single `.js` model file up by simply drag & dropping it to the window.
 
 To make the model files work both in the online editor and with the OpenJSCAD compiler, the header code should look like this:
 ```Javascript
@@ -42,16 +42,16 @@ let req = (typeof require.main == "undefined") ? require : (r) => require.main.r
 const { polygon } = req("@jscad/modeling").primitives;
 const { extrudeLinear } = req("@jscad/modeling").extrusions;
 const { rotate, translate } = req('@jscad/modeling').transforms;
-const { colorize } = req('@jscad/modeling').colors;
+const { colorize } = req('@jscad/modeling').colors
 ```
 
 You can of course adjust the requires according to your needs, the critical part is the `req` function definition.
 
 ### Parameters
-The models can be made parametric. The `parameters` YAML key is passed as `const params = {...}` object that is prepended at the beginning of the source file.
+The models can be made parametric. The `parameters` YAML key is passed as `var params = {...}` object that is prepended at the beginning of the source file.
 
 ### Texturing OpenJSCAD models
-To do this, simply set the model file to the appropriate `.js` model definition. Because OpenJSCAD does not work with textures, you can use one of the texturing modes the `ModelOBJImporter` provides, as documented in the sections above. You can apply different textures on various parts of the model using OpenJSCAD colouring. The color -> material name translation is a bit unpredictable, so you'll need to always look in the model file to see how the materials are named.
+To do this, simply set the model file to the appropriate `.js` model definition. Because OpenJSCAD does not work with textures, you can use one of the texturing modes the `ModelOBJImporter` provides, as documented in the sections above. You can apply different textures on various parts of the model using OpenJSCAD colouring. The color -> material name translation is a bit unpredictable, so you'll need to always look in the model file to see how the materials are named. You can also use the `debugOutMaterials: true` YAML config flat to make the client print out material names.
 
 ## `.fbx` files
 FBX files are currently supported for animated characters. FBX format is used because it allows defining bones and animations.

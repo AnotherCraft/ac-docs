@@ -70,4 +70,6 @@ struct ChunkData {
 	extraData @6 :List(ExtraDataRecord);
 
 	entities @7 :List(Entity.Entity);
+
+	subsystemData @8 :List(Util.AnyStructStruct);
 }
