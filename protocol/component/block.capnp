@@ -38,3 +38,12 @@ struct BTCDAutoCraftingStation {
 	selectedRecipe @4 :Util.UID;
 	queueSize @5 :Int32;
 }
+
+struct BTCDBustrixEndpoint {
+	struct Connection {
+		port @0 :Util.Identifier;
+		wireType @1 :Util.ID;
+	}
+	
+	connections @0 :List(Connection);
+}
