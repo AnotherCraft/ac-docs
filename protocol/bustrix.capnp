@@ -9,7 +9,7 @@ using Util = import "util.capnp";
 using Chunk = import "chunk.capnp";
 
 struct BustrixBlockWireData {
-	wireType @0 :UInt16;
+	wireType @0 :Util.ID;
 	connectingSides @1 :UInt8;
 }
 
