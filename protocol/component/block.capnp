@@ -47,3 +47,7 @@ struct BTCDBustrixEndpoint {
 	
 	connections @0 :List(Connection);
 }
+
+struct BTCDBustrixPowerPort {
+	energy @0 :Float32;
+}
