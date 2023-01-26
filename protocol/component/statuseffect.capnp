@@ -9,3 +9,11 @@ using Util = import "../util.capnp";
 struct SETCDKeepAliveApplication {
 	timeoutTime @0 :Util.GameTime;
 }
+
+struct SETCDTimeoutApplication {
+	timeoutTime @0 :Util.GameTime;
+}
+
+struct SETCDIncrementalStatistic {
+	value @0 :Float32;
+}

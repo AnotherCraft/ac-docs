@@ -27,7 +27,7 @@ using UID = Identifier;
 
 using ID = UInt16;
 
-using GameTime = Float32;
+using GameTime = Int64;
 
 struct Variant {
 	union {
@@ -61,4 +61,10 @@ struct Error {
 		value @1 :Variant;
 	}
 	params @2 :List(Param);
+}
+
+struct Vector3F {
+	x @0 :Float32;
+	y @1 :Float32;
+	z @2 :Float32;
 }

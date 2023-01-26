@@ -10,9 +10,11 @@ using World = import "world.capnp";
 struct Entity {
 	type @0 :Util.ID;
 	persistentHandle @1 :Util.PersistentHandle;
-	pos @2 :World.EntityWorldPos;
+	pos @2 :World.DecimalWorldPos;
 	data @3 :List(Util.AnyStructStruct);
 	actor @4 :Actor;
+
+	aimPos @5 :World.DecimalWorldPos;
 }
 
 struct Actor {
