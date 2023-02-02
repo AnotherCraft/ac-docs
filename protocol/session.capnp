@@ -7,16 +7,6 @@ $Cxx.namespace("ACP");
 using Util = import "util.capnp";
 using Game = import "game.capnp";
 
-enum MessageType {
-	serverInfo @0;
-	authRequest @1;
-}
-
-struct Message {
-	type @0 :MessageType;
-	data @1 :AnyStruct;
-}
-
 # First message, automatically sent when a client connects to a server.
 struct ServerInfo {
 	name @0 :Text;

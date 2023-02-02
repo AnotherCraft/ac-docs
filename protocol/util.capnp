@@ -13,13 +13,18 @@ using Identifier = UInt32;
 # Handle for uniquely identifying various object like item instances, inventories and such, persistent across the whole game
 using PersistentHandle = UInt64;
 
+struct Message {
+	type @0 :Identifier;
+	data @1 :AnyStruct;
+}
+
 # See Identifier
-struct IdentifierMapping {
-	struct Record {
+struct ProtocolStateUpdate {
+	struct IdentifierMapping {
 		id @0 :Identifier;
 		text @1 :Text;
 	}
-	data @0 :List(Record);
+	identifierMappings @0 :List(IdentifierMapping);
 }
 
 # Unique global identifier. It is supposed to be prefixed with the type of the identifier - for example 'block.XXX' or 'world.XX' or 'item.XXX'
