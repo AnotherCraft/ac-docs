@@ -9,7 +9,7 @@ using Game = import "game.capnp";
 
 # First message, automatically sent when a client connects to a server.
 struct ServerInfo {
-	name @0 :Text;
+	serverName @0 :Text;
 	gameVersion @1 :Text;
 }
 
