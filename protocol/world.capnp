@@ -27,11 +27,9 @@ struct ChunkPos {
 	y @1 :ChunkPosT;
 }
 
+using WorldID = Util.Identifier;
+
 using ChunkBlockIndex = UInt16;
 
 using BlockID = UInt16;
 using BlockSmallData = UInt8;
-
-struct BlockExtraSmallData {
-	data @0 :List(BlockSmallData);
-}

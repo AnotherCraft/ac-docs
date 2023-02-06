@@ -9,11 +9,9 @@ using Util = import "util.capnp";
 # Information the client requires about a game
 # This is not a packet on its own, it's sent inside Session.LoginSuccess
 struct GameInfo {
-	mods @3 :List(ModInfo);
-
-	blockMapping @0 :IDMapping;
-	itemMapping @1 :IDMapping;
-	entityMapping @2 :IDMapping;
+	mods @0 :List(ModInfo);
+	protocolState @1 :Util.ProtocolStateUpdate;
+	idMappings @2 :IDMappingList;
 }
 
 struct IDMapping {

@@ -17,3 +17,7 @@ struct ServerInfo {
 struct AuthRequest {
 	login @0 :Text;
 }
+
+struct AuthResponse {
+	success @0 :Bool;
+}
