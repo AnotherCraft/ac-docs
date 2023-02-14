@@ -5,7 +5,6 @@ using Cxx = import "/capnp/c++.capnp";
 $Cxx.namespace("ACP");
 
 using Util = import "util.capnp";
-using Entity = import "entity.capnp";
 
 using BlockWorldPosT = Int32;
 struct BlockWorldPos {
@@ -33,3 +32,7 @@ using ChunkBlockIndex = UInt16;
 
 using BlockID = UInt16;
 using BlockSmallData = UInt8;
+
+struct WorldData {
+
+}
