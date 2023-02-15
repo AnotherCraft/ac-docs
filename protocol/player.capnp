@@ -17,13 +17,15 @@ struct WorldEnterRequest {
 }
 
 # Sent to the client when it firsts enters the game
-struct WorldEnter {
-	entity @0 :Entity.Entity;
-	world @1 :World.WorldID;
-	worldData @2 :World.WorldData;
+struct WorldEnterSuccess {
+	world @0 :World.WorldID;
+	worldData @1 :World.WorldData;
+	pos @2 :World.DecimalWorldPos;
+
+	# Persistent handle of the player entity
+	entityHandle @3 :Util.PersistentHandle;
 }
 
-# Stored as standalone entry on the server
 struct PlayerCharacterPosition {
 	world @0 :World.WorldID;
 	pos @1 :World.DecimalWorldPos;
