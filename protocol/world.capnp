@@ -34,5 +34,6 @@ using BlockID = UInt16;
 using BlockSmallData = UInt8;
 
 struct WorldData {
-
+	worldgen @0 :Util.Identifier;
+	seed @1 :UInt64;
 }

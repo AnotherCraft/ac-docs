@@ -8,6 +8,7 @@ using Util = import "util.capnp";
 using Game = import "game.capnp";
 using World = import "world.capnp";
 using Chunk = import "chunk.capnp";
+using Entity = import "entity.capnp";
 
 # First message, automatically sent when a client connects to a server.
 struct ServerInfo {
@@ -22,11 +23,4 @@ struct AuthRequest {
 
 struct AuthResponse {
 	success @0 :Bool;
-}
-
-# Sent to client to inform him where his player entity can be found (the entity itself will be sent with the chunk upon request)
-struct PlayerEntityInfo {
-	world @0 :World.WorldID;
-	chunk @1 :Chunk.ChunkPos;
-	handle @2 :Util.PersistentHandle;
 }
