@@ -22,8 +22,8 @@ struct WorldEnterSuccess {
 	worldData @1 :World.WorldData;
 	pos @2 :World.DecimalWorldPos;
 
-	# Persistent handle of the player entity
-	entityHandle @3 :Util.PersistentHandle;
+	# Player entity. The entity position might be null because the entity might not be in the world yet.
+	entity @3 :Entity.Entity;
 }
 
 struct PlayerCharacterPosition {
