@@ -10,11 +10,12 @@ using World = import "world.capnp";
 struct Entity {
 	type @0 :Util.ID;
 	persistentHandle @1 :Util.PersistentHandle;
-	pos @2 :World.DecimalWorldPos;
-	data @3 :List(Util.AnyStructStruct);
-	actor @4 :Actor;
+	world @2 :World.WorldID;
+	pos @3 :World.DecimalWorldPos;
+	data @4 :List(Util.AnyStructStruct);
+	actor @5 :Actor;
 
-	aimPos @5 :World.DecimalWorldPos;
+	aimPos @6 :World.DecimalWorldPos;
 }
 
 struct Actor {
@@ -39,4 +40,20 @@ struct ActorStats {
 struct ActorStat {
 	type @0 :Util.UID;
 	value @1 :Float32;
+}
+
+# Sent from server to client when there's a world change for an entity.
+# Sent to clients tracking source chunk or target chunk.
+struct EntityWorldChange {
+	entity @0 :Util.PersistentHandle;
+	targetWorld @1 :World.WorldID;
+	targetPos @2 :World.DecimalWorldPos;
+	reason @3 :Util.Identifier;
+}
+
+# Sent to server when the client needs data for the given entity.
+# For success, the entity has to be loaded on the server side and must be accessible to the client.
+# Server responds with Entity if the request is valid.
+struct EntityRequest {
+	entity @0 :Util.PersistentHandle;
 }
