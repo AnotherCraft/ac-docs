@@ -10,13 +10,13 @@ using World = import "world.capnp";
 using Chunk = import "chunk.capnp";
 using Entity = import "entity.capnp";
 
-# Sent by the client, denoting that the player would like to enter the game
+# C->S Denoting that the player would like to enter the game
 # Server responds with WorldEnter
 struct WorldEnterRequest {
 
 }
 
-# Sent to the client when it firsts enters the game
+# S->C Sent to the client when it firsts enters the game
 struct WorldEnterSuccess {
 	world @0 :World.WorldID;
 	worldData @1 :World.WorldData;
@@ -26,6 +26,7 @@ struct WorldEnterSuccess {
 	entity @3 :Entity.Entity;
 }
 
+# S->C
 struct PlayerCharacterPosition {
 	world @0 :World.WorldID;
 	pos @1 :World.DecimalWorldPos;

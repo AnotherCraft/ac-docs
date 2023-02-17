@@ -10,17 +10,18 @@ using World = import "world.capnp";
 using Chunk = import "chunk.capnp";
 using Entity = import "entity.capnp";
 
-# First message, automatically sent when a client connects to a server.
+# S->C First message, automatically sent when a client connects to a server.
 struct ServerInfo {
 	serverName @0 :Text;
 	gameVersion @1 :Text;
 }
 
-# Request from the client to login.
+# C->S Request from the client to login.
 struct AuthRequest {
 	login @0 :Text;
 }
 
+# S->C
 struct AuthResponse {
 	success @0 :Bool;
 }

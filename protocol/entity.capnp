@@ -7,6 +7,7 @@ $Cxx.namespace("ACP");
 using Util = import "util.capnp";
 using World = import "world.capnp";
 
+# S->C, also used for serialization generally
 struct Entity {
 	type @0 :Util.ID;
 	persistentHandle @1 :Util.PersistentHandle;
@@ -42,7 +43,7 @@ struct ActorStat {
 	value @1 :Float32;
 }
 
-# Sent from server to client when there's a world change for an entity.
+# S->C when there's a world change for an entity.
 # Sent to clients tracking source chunk or target chunk.
 struct EntityWorldChange {
 	entity @0 :Util.PersistentHandle;
@@ -51,7 +52,7 @@ struct EntityWorldChange {
 	reason @3 :Util.Identifier;
 }
 
-# Sent to server when the client needs data for the given entity.
+# C->S when the client needs data for the given entity.
 # For success, the entity has to be loaded on the server side and must be accessible to the client.
 # Server responds with Entity if the request is valid.
 struct EntityRequest {
