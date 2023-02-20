@@ -26,8 +26,13 @@ struct WorldEnterSuccess {
 	entity @3 :Entity.Entity;
 }
 
-# S->C
+# SAVE Used for separately storing player character position
 struct PlayerCharacterPosition {
 	world @0 :World.WorldID;
 	pos @1 :World.DecimalWorldPos;
+}
+
+# C->S
+struct PlayerPositionReport {
+	pos @0 :World.DecimalWorldPos;	
 }
