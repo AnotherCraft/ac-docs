@@ -22,6 +22,7 @@ struct InventoryRequest {
 # C->S Denotes that the client needs an inventory slot be serialized and sent to him (possible sync issue or something else)
 struct InventorySlotRequest {
 	inventory @0 :Util.PersistentHandle;
+	slot @1 :InventorySlotID;
 }
 
 # S->C, SAVE
