@@ -6,9 +6,10 @@ $Cxx.namespace("ACP");
 
 using Util = import "../util.capnp";
 using Item = import "../item.capnp";
+using Inventory = import "../inventory.capnp";
 
 struct ETCDItem {
-	inv @0 :Item.Inventory;
+	inv @0 :Inventory.Inventory;
 }
 
 struct ETCDPhysics {
@@ -16,14 +17,14 @@ struct ETCDPhysics {
 }
 
 struct ETCDCharacter {
-	storageInventory @0 :Item.Inventory;
-	equipmentInventory @1 :Item.Inventory;
+	storageInventory @0 :Inventory.Inventory;
+	equipmentInventory @1 :Inventory.Inventory;
 }
 
 struct ETCDPlayer {
-	handCraftingInputInventory @0 :Item.Inventory;
-	handCraftingIntermediateOutputInventory @1 :Item.Inventory;
-	handCraftingOutputInventory @2 :Item.Inventory;
+	handCraftingInputInventory @0 :Inventory.Inventory;
+	handCraftingIntermediateOutputInventory @1 :Inventory.Inventory;
+	handCraftingOutputInventory @2 :Inventory.Inventory;
 }
 
 struct ETCDTreeSapling {
@@ -38,7 +39,7 @@ struct ETCDDumbAnimalAI {
 }
 
 struct ETCDLootInventory {
-	lootInventory @0 :Item.Inventory;
+	lootInventory @0 :Inventory.Inventory;
 }
 
 struct ETCDDespawnTimeout {

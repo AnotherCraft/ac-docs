@@ -7,7 +7,7 @@ $Cxx.namespace("ACP");
 using Util = import "util.capnp";
 using World = import "world.capnp";
 
-# S->C, also used for serialization generally
+# S->C, SAVE
 struct Entity {
 	type @0 :Util.ID;
 	persistentHandle @1 :Util.PersistentHandle;

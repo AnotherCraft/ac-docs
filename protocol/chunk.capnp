@@ -38,6 +38,7 @@ struct ChunkUnrequest {
 }
 
 # S->C message containing data for a given chunk
+# S->C, SAVE
 # As soon as server sends this message, it has to start sending the client all updates related to the chunk (the subscription is implicit). The subscription then gets cancelled with ChunkUnrequest.
 struct Chunk {
 	world @9 :World.WorldID;

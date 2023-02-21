@@ -6,10 +6,11 @@ $Cxx.namespace("ACP");
 
 using Util = import "../util.capnp";
 using Item = import "../item.capnp";
+using Inventory = import "../inventory.capnp";
 using Entity = import "../entity.capnp";
 
 struct BTCDInventory {
-	inv @0 :Item.Inventory;
+	inv @0 :Inventory.Inventory;
 }
 
 struct BTCDStoredStringProperty {
@@ -25,15 +26,15 @@ struct BTCDMinedItemDrop {
 }
 
 struct BTCDManualCraftingStation {
-	inputInventory @0 :Item.Inventory;
-	intermediateOutputInventory @1 :Item.Inventory;
-	outputInventory @2 :Item.Inventory;
+	inputInventory @0 :Inventory.Inventory;
+	intermediateOutputInventory @1 :Inventory.Inventory;
+	outputInventory @2 :Inventory.Inventory;
 }
 
 struct BTCDAutoCraftingStation {
-	inputInventory @0 :Item.Inventory;
-	intermediateOutputInventory @1 :Item.Inventory;
-	outputInventory @2 :Item.Inventory;
+	inputInventory @0 :Inventory.Inventory;
+	intermediateOutputInventory @1 :Inventory.Inventory;
+	outputInventory @2 :Inventory.Inventory;
 	actor @3 :Entity.Actor;
 	selectedRecipe @4 :Util.UID;
 	queueSize @5 :Int32;
