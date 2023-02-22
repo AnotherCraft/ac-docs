@@ -25,6 +25,8 @@ struct ETCDPlayer {
 	handCraftingInputInventory @0 :Inventory.Inventory;
 	handCraftingIntermediateOutputInventory @1 :Inventory.Inventory;
 	handCraftingOutputInventory @2 :Inventory.Inventory;
+	
+	cursorInventory @3 :Inventory.Inventory;
 }
 
 struct ETCDTreeSapling {
