@@ -7,7 +7,7 @@ $Cxx.namespace("ACP");
 using Util = import "../util.capnp";
 using Item = import "../item.capnp";
 using Inventory = import "../inventory.capnp";
-using Entity = import "../entity.capnp";
+using Actor = import "../actor.capnp";
 
 struct BTCDInventory {
 	inv @0 :Inventory.Inventory;
@@ -35,7 +35,7 @@ struct BTCDAutoCraftingStation {
 	inputInventory @0 :Inventory.Inventory;
 	intermediateOutputInventory @1 :Inventory.Inventory;
 	outputInventory @2 :Inventory.Inventory;
-	actor @3 :Entity.Actor;
+	actor @3 :Actor.Actor;
 	selectedRecipe @4 :Util.UID;
 	queueSize @5 :Int32;
 }

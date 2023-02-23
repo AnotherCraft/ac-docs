@@ -37,3 +37,12 @@ struct WorldData {
 	worldgen @0 :Util.Identifier;
 	seed @1 :UInt64;
 }
+
+struct CollisionRayState {
+	hitType @0 :UInt8;
+	hitPos @1 :DecimalWorldPos;
+	hitSide @2 :UInt8;
+	hitBlockPos @3 :BlockWorldPos;
+	hitEntity @4 :Util.PersistentHandle;
+	hitColliderArg @5 :Int32;
+}

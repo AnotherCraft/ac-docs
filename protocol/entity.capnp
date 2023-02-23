@@ -6,6 +6,7 @@ $Cxx.namespace("ACP");
 
 using Util = import "util.capnp";
 using World = import "world.capnp";
+using Actor = import "actor.capnp";
 
 # S->C, SAVE
 struct Entity {
@@ -14,33 +15,9 @@ struct Entity {
 	world @2 :World.WorldID;
 	pos @3 :World.DecimalWorldPos;
 	data @4 :List(Util.AnyStructStruct);
-	actor @5 :Actor;
+	actor @5 :Actor.Actor;
 
 	aimPos @6 :World.DecimalWorldPos;
-}
-
-struct Actor {
-	persistentHandle @0 :Util.PersistentHandle;
-	statusEffects @1 :ActorStatusEffects;
-	stats @2 :ActorStats;
-}
-
-struct ActorStatusEffects {
-	list @0 :List(ActorStatusEffect);
-}
-
-struct ActorStatusEffect {
-	type @0 :Util.ID;
-	data @1 :List(Util.AnyStructStruct);
-}
-
-struct ActorStats {
-	persistentStats @0 :List(ActorStat);
-}
-
-struct ActorStat {
-	type @0 :Util.UID;
-	value @1 :Float32;
 }
 
 # S->C when there's a world change for an entity.
