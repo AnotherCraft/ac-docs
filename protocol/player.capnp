@@ -24,6 +24,14 @@ struct WorldEnterSuccess {
 
 	# Player entity. The entity position might be null because the entity might not be in the world yet.
 	entity @3 :Entity.Entity;
+
+	# Client-specific data like UI bindings etc, completely managed by client
+	playerClientData @4 :Data;
+}
+
+# C->S, SAVE Asking the server to store client data
+struct PlayerClientData {
+	data @0 :Data;
 }
 
 # SAVE Used for separately storing player character position
