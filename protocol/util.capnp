@@ -46,6 +46,14 @@ struct Variant {
 	}
 }
 
+struct IdentifierVariantList {
+	struct Rec {
+		key @0 :Identifier;
+		value @1 :Variant;
+	}
+	data @0 :List(Rec);
+}
+
 struct AnyPointerStruct {
 	data @0 :AnyPointer;
 }

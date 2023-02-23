@@ -11,3 +11,13 @@ struct Item {
 	persistentHandle @1 :Util.PersistentHandle;
 	data @2 :List(Util.AnyStructStruct);
 }
+
+struct ItemStack {
+	type @0 :Util.ID; # Item type ID
+	persistentHandles @1 :List(Util.PersistentHandle);
+	data @2 :List(Util.AnyStructStruct); # Flat array of item data; item count * serialize data count
+}
+
+struct ItemHandleStack {
+	handles @0 :List(Util.PersistentHandle);
+}

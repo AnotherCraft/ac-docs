@@ -6,6 +6,7 @@ $Cxx.namespace("ACP");
 
 using Util = import "util.capnp";
 using World = import "world.capnp";
+using Item = import "item.capnp";
 
 struct Actor {
 	persistentHandle @0 :Util.PersistentHandle;
@@ -32,17 +33,12 @@ struct ActorStat {
 }
 
 struct ActorInteractionData {
-	itemStack @0 :List(Util.PersistentHandle);
+	itemStack @0 :Item.ItemHandleStack;
 	action @1 :Util.Identifier;
 	origin @2 :Util.Identifier;
 	ray @3 :World.CollisionRayState;
 	isRepeated @4 :Bool;
-
-	struct Param {
-		key @0 :Text;
-		value @1 :Util.Variant;
-	}
-	params @5 :List(Param);
+	params @5 :Data; # Json object
 }
 
 # C->S
