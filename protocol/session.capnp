@@ -12,8 +12,9 @@ using Entity = import "entity.capnp";
 
 # S->C First message, automatically sent when a client connects to a server.
 struct ServerInfo {
-	serverName @0 :Text;
-	gameVersion @1 :Text;
+	appID @0 :Text; # AnotherCraft server
+	serverName @1 :Text;
+	gameVersion @2 :Text;
 }
 
 # C->S Request from the client to login.
