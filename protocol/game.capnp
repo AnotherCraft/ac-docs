@@ -6,12 +6,15 @@ $Cxx.namespace("ACP");
 
 using Util = import "util.capnp";
 
+using GameTime = Util.Decimal;
+
 # Information the client requires about a game
 # This is not a packet on its own, it's sent inside Session.LoginSuccess
 struct GameInfo {
 	mods @0 :List(ModInfo);
 	protocolState @1 :Util.ProtocolStateUpdate;
 	idMappings @2 :IDMappingList;
+	gameTime @3 :Util.Decimal;
 }
 
 struct IDMapping {

@@ -42,5 +42,6 @@ struct PlayerCharacterPosition {
 
 # C->S
 struct PlayerPositionReport {
-	pos @0 :World.DecimalWorldPos;	
+	pos @0 :World.DecimalWorldPos;
+	aimPos @1 :World.DecimalWorldPos;
 }

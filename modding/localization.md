@@ -28,8 +28,9 @@ Translations with more contidions are attempted to be applied first. Order of ap
 
 ## Translation string macros
 * `$param` Returns value of a given parameter
-* `$param{k1:v1;k2:v2;...}` Returns value of a given parameter, passes given parameters to the parameter `TranslatableString`. If `*` is passed as a list item, passes all parameters from the parent context. If only `key` is specified, without the `: value`, value is set to `1`.
-* `$$JOIN{param;glue;k1:v1;...}` Joins array `param` (iterates `param_0`, `param_1` and so on until unexisting param key is reached) with glue `glue`. Passes parameters same as above.
+* `$param{k1=v1,k2=v2,...}` Returns value of a given parameter, passes given parameters to the parameter `TranslatableString`. If `*` is passed as a list item, passes all parameters from the parent context. If only `key` is specified, without the `= value`, value is set to `1`.
+* `$JOIN{param,glue}` Joins array `param` (iterates `param_0`, `param_1` and so on until unexisting param key is reached) with glue `glue`.
+* `$TR{key,k=v1,...}` same as `$param{}`, except the param value is parsed from the first argument
 
 ## General string macros
 * `::^` Makes the nearest following letter capitalized (removes whitespaces between the tag and the letter)

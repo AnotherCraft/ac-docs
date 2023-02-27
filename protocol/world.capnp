@@ -13,11 +13,10 @@ struct BlockWorldPos {
 	z @2 :BlockWorldPosT;
 }
 
-using DecimalWorldPosT = Float32;
 struct DecimalWorldPos {
-	x @0 :Int64;
-	y @1 :Int64;
-	z @2 :Int64;
+	x @0 :Util.Decimal;
+	y @1 :Util.Decimal;
+	z @2 :Util.Decimal;
 }
 
 using ChunkPosT = Int32;

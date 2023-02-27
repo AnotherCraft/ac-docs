@@ -32,6 +32,11 @@ struct ActorStat {
 	value @1 :Float32;
 }
 
+# S->C
+struct ActorActionUpdate {
+	actor @0 :Util.PersistentHandle;
+}
+
 struct ActorInteractionData {
 	itemStack @0 :Item.ItemHandleStack;
 	action @1 :Util.Identifier;
