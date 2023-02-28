@@ -46,7 +46,31 @@ struct ActorInteractionData {
 	params @5 :Data; # Json object
 }
 
-# C->S
+# C->S Sent when the player wants to interacts with an item (IA_Action)
 struct ItemActionRequest {
 	interactionData @0 :ActorInteractionData;
+}
+
+struct ItemEquipRecord {
+	items @0 :Item.ItemHandleStack;
+	target @1 :Util.Identifier;
+	flags @2 :UInt8;
+}
+
+# For S->C serialization purposes
+struct ActorAction {
+	handle @7 :Util.PersistentHandle;
+	startTime @0 :Util.GameTime;
+	endTime @1 :Util.GameTime;
+	flags @2 :UInt16;
+	name @3 :Util.TranslatableString;
+	animation @4 :Util.Identifier;
+	origin @5 :Util.Identifier;
+	itemEquipRecords @6 :List(ItemEquipRecord);
+}
+
+# S->C
+struct ActorActorActionChanged {
+	actor @0 :Util.PersistentHandle;
+	action @1 :ActorAction;
 }

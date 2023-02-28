@@ -13,6 +13,8 @@ using Identifier = UInt32;
 # Handle for uniquely identifying various object like item instances, inventories and such, persistent across the whole game
 using PersistentHandle = UInt64;
 
+using TranslatableString = Text;
+
 struct Message {
 	type @0 :Identifier;
 	data @1 :AnyStruct;
