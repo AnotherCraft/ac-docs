@@ -27,3 +27,10 @@ struct BlockDamageReceived {
 	item @3 :Util.PersistentHandle;
 	ray @4 :World.CollisionRayState;
 }
+
+# S->C
+struct BlockMiningProgressChanged {
+	world @0 :World.WorldID;
+	pos @1 :World.BlockWorldPos;
+	newValue @2 :Float32;
+}
