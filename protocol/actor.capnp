@@ -75,3 +75,13 @@ struct ActorActorActionChanged {
 	action @1 :ActorAction;
 	currentTime @2 :Util.GameTime;
 }
+
+# C->S
+struct ActionFinishRequest {
+
+}
+
+# C->S
+struct ActionCancelRequest {
+	
+}
