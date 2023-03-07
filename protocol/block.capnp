@@ -18,3 +18,12 @@ struct BlockUninit {
 	reason @3 :Util.Identifier;
 	playSound @4 :Bool;
 }
+
+# S->C
+struct BlockDamageReceived {
+	world @0 :World.WorldID;
+	pos @1 :World.BlockWorldPos;
+	actor @2 :Util.PersistentHandle;
+	item @3 :Util.PersistentHandle;
+	ray @4 :World.CollisionRayState;
+}
