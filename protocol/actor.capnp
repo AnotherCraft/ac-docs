@@ -73,4 +73,5 @@ struct ActorAction {
 struct ActorActorActionChanged {
 	actor @0 :Util.PersistentHandle;
 	action @1 :ActorAction;
+	currentTime @2 :Util.GameTime;
 }
