@@ -83,5 +83,6 @@ struct ActionFinishRequest {
 
 # C->S
 struct ActionCancelRequest {
-	
+	# If set, will cancel the action only the origin matches
+	originCondition @0 :Util.Identifier;
 }
