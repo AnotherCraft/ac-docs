@@ -11,6 +11,19 @@ using BlockID = World.BlockID;
 using BlockSmallData = World.BlockSmallData;
 
 # S->C
+struct BlockInit {
+	world @0 :World.WorldID;
+	pos @1 :World.BlockWorldPos;
+	reason @2 :Util.Identifier;
+	playSound @3 :Bool;
+	sourceItem @4 :Util.PersistentHandle;
+	ray @5 :World.CollisionRayState;
+	actor @6 :Util.PersistentHandle;
+	properties @7 :Util.IdentifierVariantList;
+	blockID @8 :BlockID;
+}
+
+# S->C
 struct BlockUninit {
 	world @0 :World.WorldID;
 	pos @1 :World.BlockWorldPos;
