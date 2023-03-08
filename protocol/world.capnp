@@ -44,4 +44,5 @@ struct CollisionRayState {
 	hitBlockPos @3 :BlockWorldPos;
 	hitEntity @4 :Util.PersistentHandle;
 	hitColliderArg @5 :Int32;
+	distance @6 :Float32;
 }
