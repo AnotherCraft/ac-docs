@@ -26,3 +26,14 @@ struct AuthRequest {
 struct AuthResponse {
 	success @0 :Bool;
 }
+
+# C->S
+struct ChatInput {
+	input @0 :Text;
+}
+
+# S->C
+struct ChatEvent {
+	type @0 :Util.Identifier;
+	content @1 :Util.TranslatableString;
+}
