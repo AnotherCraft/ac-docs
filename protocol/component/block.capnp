@@ -8,6 +8,7 @@ using Util = import "../util.capnp";
 using Item = import "../item.capnp";
 using Inventory = import "../inventory.capnp";
 using Actor = import "../actor.capnp";
+using World = import "../world.capnp";
 
 struct BTCDInventory {
 	inv @0 :Inventory.Inventory;
@@ -51,4 +52,13 @@ struct BTCDBustrixEndpoint {
 
 struct BTCDBustrixPowerPort {
 	energy @0 :Float32;
+}
+
+# S->C
+struct BTCHorizontalOrientationEChanged {
+	world @0 :World.WorldID;
+	pos @1 :World.BlockWorldPos;
+	component @2 :Util.Identifier;
+	actor @3 :Util.PersistentHandle;
+	data @4 :UInt8;
 }
