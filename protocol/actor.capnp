@@ -8,6 +8,8 @@ using Util = import "util.capnp";
 using World = import "world.capnp";
 using Item = import "item.capnp";
 
+using ActionRequestID = UInt64;
+
 struct Actor {
 	persistentHandle @0 :Util.PersistentHandle;
 	statusEffects @1 :ActorStatusEffects;
@@ -49,6 +51,7 @@ struct ActorInteractionData {
 # C->S Sent when the player wants to interacts with an item (IA_Action)
 struct ItemActionRequest {
 	interactionData @0 :ActorInteractionData;
+	actionRequestID @1 :ActionRequestID;
 }
 
 struct ItemEquipRecord {
@@ -59,30 +62,36 @@ struct ItemEquipRecord {
 
 # For S->C serialization purposes
 struct ActorAction {
-	handle @7 :Util.PersistentHandle;
-	startTime @0 :Util.GameTime;
-	endTime @1 :Util.GameTime;
-	flags @2 :UInt16;
-	name @3 :Util.TranslatableString;
-	animation @4 :Util.Identifier;
-	origin @5 :Util.Identifier;
-	itemEquipRecords @6 :List(ItemEquipRecord);
+	handle @0 :Util.PersistentHandle;
+	startTime @1 :Util.GameTime;
+	endTime @2 :Util.GameTime;
+	flags @3 :UInt16;
+	name @4 :Util.TranslatableString;
+	animation @5 :Util.Identifier;
+	origin @6 :Util.Identifier;
+	itemEquipRecords @7 :List(ItemEquipRecord);
+	actionRequestID @8 :ActionRequestID;
 }
 
 # S->C
-struct ActorActorActionChanged {
+struct ActorCurrentActionChanged {
 	actor @0 :Util.PersistentHandle;
 	action @1 :ActorAction;
-	currentTime @2 :Util.GameTime;
+}
+
+struct ActorActionEnded {
+	actor @0 :Util.PersistentHandle;
+	reason @1 :UInt8;
+	actionRequestID @2 :ActionRequestID;
 }
 
 # C->S
-struct ActionFinishRequest {
+struct ActorActionFinishRequest {
 
 }
 
 # C->S
-struct ActionCancelRequest {
+struct ActorActionCancelRequest {
 	# If set, will cancel the action only the origin matches
 	originCondition @0 :Util.Identifier;
 }

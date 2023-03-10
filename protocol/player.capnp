@@ -9,6 +9,7 @@ using Game = import "game.capnp";
 using World = import "world.capnp";
 using Chunk = import "chunk.capnp";
 using Entity = import "entity.capnp";
+using Actor = import "actor.capnp";
 
 # C->S Denoting that the player would like to enter the game
 # Server responds with WorldEnter
@@ -44,4 +45,10 @@ struct PlayerCharacterPosition {
 struct PlayerPositionReport {
 	pos @0 :World.DecimalWorldPos;
 	aimPos @1 :World.DecimalWorldPos;
+}
+
+# C->S
+struct HandCraftingRequest {
+	recipe @0 :Util.ID;	
+	actionRequestID @1 :Actor.ActionRequestID;
 }
