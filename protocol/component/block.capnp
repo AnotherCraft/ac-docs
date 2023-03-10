@@ -56,9 +56,7 @@ struct BTCDBustrixPowerPort {
 
 # S->C
 struct BTCHorizontalOrientationEChanged {
-	world @0 :World.WorldID;
-	pos @1 :World.BlockWorldPos;
-	component @2 :Util.Identifier;
-	actor @3 :Util.PersistentHandle;
-	data @4 :UInt8;
+	ctx @0 :World.ComponentWorldBlockContext;
+	actor @1 :Util.PersistentHandle;
+	data @2 :UInt8;
 }

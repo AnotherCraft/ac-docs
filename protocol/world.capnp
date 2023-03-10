@@ -46,3 +46,14 @@ struct CollisionRayState {
 	hitColliderArg @5 :Int32;
 	distance @6 :Float32;
 }
+
+struct WorldBlockContext {
+	world @0 :WorldID;
+	pos @1 :BlockWorldPos;
+}
+
+struct ComponentWorldBlockContext {
+	world @0 :WorldID;
+	pos @1 :BlockWorldPos;
+	component @2 :Util.Identifier;
+}

@@ -12,38 +12,34 @@ using BlockSmallData = World.BlockSmallData;
 
 # S->C
 struct BlockInit {
-	world @0 :World.WorldID;
-	pos @1 :World.BlockWorldPos;
-	reason @2 :Util.Identifier;
-	playSound @3 :Bool;
-	sourceItem @4 :Util.PersistentHandle;
-	ray @5 :World.CollisionRayState;
-	actor @6 :Util.PersistentHandle;
-	properties @7 :Util.IdentifierVariantList;
-	blockID @8 :BlockID;
+	ctx @0 :World.WorldBlockContext;
+	reason @1 :Util.Identifier;
+	playSound @2 :Bool;
+	sourceItem @3 :Util.PersistentHandle;
+	ray @4 :World.CollisionRayState;
+	actor @5 :Util.PersistentHandle;
+	properties @6 :Util.IdentifierVariantList;
+	blockID @7 :BlockID;
 }
 
 # S->C
 struct BlockUninit {
-	world @0 :World.WorldID;
-	pos @1 :World.BlockWorldPos;
-	actor @2 :Util.PersistentHandle;
-	reason @3 :Util.Identifier;
-	playSound @4 :Bool;
+	ctx @0 :World.WorldBlockContext;
+	actor @1 :Util.PersistentHandle;
+	reason @2 :Util.Identifier;
+	playSound @3 :Bool;
 }
 
 # S->C
 struct BlockDamageReceived {
-	world @0 :World.WorldID;
-	pos @1 :World.BlockWorldPos;
-	actor @2 :Util.PersistentHandle;
-	item @3 :Util.PersistentHandle;
-	ray @4 :World.CollisionRayState;
+	ctx @0 :World.WorldBlockContext;
+	actor @1 :Util.PersistentHandle;
+	item @2 :Util.PersistentHandle;
+	ray @3 :World.CollisionRayState;
 }
 
 # S->C
 struct BlockMiningProgressChanged {
-	world @0 :World.WorldID;
-	pos @1 :World.BlockWorldPos;
-	newValue @2 :Float32;
+	ctx @0 :World.WorldBlockContext;
+	newValue @1 :Float32;
 }
