@@ -48,10 +48,17 @@ struct ActorInteractionData {
 	params @5 :Data; # Json object
 }
 
-# C->S Sent when the player wants to interacts with an item (IA_Action)
+# C->S Sent when the player wants to interactswith an item (IA_Action)
 struct ItemActionRequest {
 	interactionData @0 :ActorInteractionData;
 	actionRequestID @1 :ActionRequestID;
+}
+
+# C->S Sent when the player wants to interact with a block (BA_Interact)
+struct BlockInteractionRequest {
+	ctx @0 :World.WorldBlockContext;
+	interactionData @1 :ActorInteractionData;
+	actionRequestID @2 :ActionRequestID;
 }
 
 struct ItemEquipRecord {

@@ -60,3 +60,8 @@ struct BTCHorizontalOrientationMChanged {
 	actor @1 :Util.PersistentHandle;
 	data @2 :UInt8;
 }
+
+# S->C Signals the client that it should open a modular window handled by the provided component
+struct BTCModularWindowMOpen {
+	ctx @0 :World.ComponentWorldBlockContext;
+}
