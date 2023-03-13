@@ -32,6 +32,13 @@ struct BTCDManualCraftingStation {
 	outputInventory @2 :Inventory.Inventory;
 }
 
+# C->S
+struct BTCDManualCraftingStationMCraftingRequest {
+	ctx @0 :World.ComponentWorldBlockContext;
+	recipe @1 :Util.ID;	
+	actionRequestID @2 :Actor.ActionRequestID;
+}
+
 struct BTCDAutoCraftingStation {
 	inputInventory @0 :Inventory.Inventory;
 	intermediateOutputInventory @1 :Inventory.Inventory;
