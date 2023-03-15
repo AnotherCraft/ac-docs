@@ -43,3 +43,10 @@ struct BlockMiningProgressChanged {
 	ctx @0 :World.WorldBlockContext;
 	newValue @1 :Float32;
 }
+
+# S->C
+struct BlockSetProperty {
+	ctx @0 :World.WorldBlockContext;
+	property @1 :Util.Identifier;
+	value @2 :Util.Variant;
+}
