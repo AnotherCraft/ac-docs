@@ -22,6 +22,10 @@ struct BTCDStoredMaterialProperty {
 	value @0 :Util.ID;
 }
 
+struct BTCDStoredRecipeProperty {
+	value @0 :Util.ID;
+}
+
 struct BTCDMinedItemDrop {
 	itemPersistentHandle @0 :Util.PersistentHandle;
 }
@@ -44,8 +48,6 @@ struct BTCDAutoCraftingStation {
 	intermediateOutputInventory @1 :Inventory.Inventory;
 	outputInventory @2 :Inventory.Inventory;
 	actor @3 :Actor.Actor;
-	selectedRecipe @4 :Util.UID;
-	queueSize @5 :Int32;
 }
 
 struct BTCDBustrixEndpoint {
