@@ -20,6 +20,9 @@ struct BlockInit {
 	actor @5 :Util.PersistentHandle;
 	properties @6 :Util.IdentifierVariantList;
 	blockID @7 :BlockID;
+
+	smallData @8 :BlockSmallData;
+	extraData @9 :List(Util.AnyStructStruct);
 }
 
 # S->C
