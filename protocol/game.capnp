@@ -39,3 +39,7 @@ struct SaveSyncData {
 	persistentHandleCounter @0 :Util.PersistentHandle;
 	gameTime @1 :Util.GameTime;
 }
+
+# S->C Sent to clients at the end of every world step (if there was something sent to the clients during the step)
+# This is to instruct clients to also process all messages during a single step to prevent unnecessary updates (for example consecutive re-renders, light map updates, ...)
+struct StepSync {}
