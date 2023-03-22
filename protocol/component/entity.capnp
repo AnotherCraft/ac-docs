@@ -18,7 +18,7 @@ struct ETCDPhysics {
 }
 
 # S->C
-struct ETCDPhysicsMUpdate {
+struct ETCPhysicsMUpdate {
 	entity @0 :Util.PersistentHandle;
 	pos @1 :World.DecimalWorldPos;
 	speed @2 :Util.Vector3F;

@@ -74,3 +74,8 @@ struct BTCHorizontalOrientationMChanged {
 struct BTCModularWindowMOpen {
 	ctx @0 :World.ComponentWorldBlockContext;
 }
+
+struct BTCExplicitlyAttachedSidesMAttachSide {
+	ctx @0 :World.ComponentWorldBlockContext;
+	newData @1 :World.BlockSmallData;
+}
