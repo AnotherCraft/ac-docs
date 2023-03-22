@@ -6,6 +6,7 @@ $Cxx.namespace("ACP");
 
 using Util = import "../util.capnp";
 using Item = import "../item.capnp";
+using World = import "../world.capnp";
 using Inventory = import "../inventory.capnp";
 
 struct ETCDItem {
@@ -14,6 +15,13 @@ struct ETCDItem {
 
 struct ETCDPhysics {
 	speed @0 :Util.Vector3F;
+}
+
+# S->C
+struct ETCDPhysicsMUpdate {
+	entity @0 :Util.PersistentHandle;
+	pos @1 :World.DecimalWorldPos;
+	speed @2 :Util.Vector3F;
 }
 
 struct ETCDCharacter {

@@ -57,3 +57,17 @@ struct ComponentWorldBlockContext {
 	pos @1 :BlockWorldPos;
 	component @2 :Util.Identifier;
 }
+
+# S->C Instruction that the client should play a sound
+struct SoundEvent {
+	sound @0 :Util.Identifier;
+	pos @1 :DecimalWorldPos; # If not set -> all around
+	speed @2 :DecimalWorldPos; # For doppler effect
+	volume @3 :Float32;
+	bus @4 :Util.Identifier;
+
+	union {
+		block @5 :WorldBlockContext; # If set, the sound should be characteristic to the given block
+		entity @6 :Util.PersistentHandle; # If set, the sound should be characteristic to the given entity
+	}
+}
