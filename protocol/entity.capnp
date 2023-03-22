@@ -24,9 +24,13 @@ struct Entity {
 # Sent to clients tracking source chunk or target chunk.
 struct EntityWorldChange {
 	entity @0 :Util.PersistentHandle;
-	targetWorld @1 :World.WorldID;
-	targetPos @2 :World.DecimalWorldPos;
-	reason @3 :Util.Identifier;
+
+	# When changing worlds, there's a high probability that the entity is not loaded on clients -> we include it in the world change event itself.
+	entityData @1 :Entity;
+	
+	targetWorld @2 :World.WorldID;
+	targetPos @3 :World.DecimalWorldPos;
+	reason @4 :Util.Identifier;
 }
 
 # C->S when the client needs data for the given entity.
