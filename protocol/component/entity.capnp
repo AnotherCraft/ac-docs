@@ -15,13 +15,15 @@ struct ETCDItem {
 
 struct ETCDPhysics {
 	speed @0 :Util.Vector3F;
+	targetSpeed @1 :Util.Vector3F;
+	targetSpeedAcceleration @2 :Util.Vector3F;
 }
 
 # S->C
 struct ETCPhysicsMUpdate {
 	entity @0 :Util.PersistentHandle;
 	pos @1 :World.DecimalWorldPos;
-	speed @2 :Util.Vector3F;
+	data @2 :ETCDPhysics;
 }
 
 struct ETCDCharacter {
