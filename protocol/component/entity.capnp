@@ -23,7 +23,8 @@ struct ETCDPhysics {
 struct ETCPhysicsMUpdate {
 	entity @0 :Util.PersistentHandle;
 	pos @1 :World.DecimalWorldPos;
-	data @2 :ETCDPhysics;
+	aimPos @2 :World.DecimalWorldPos;
+	data @3 :ETCDPhysics;
 }
 
 struct ETCDCharacter {

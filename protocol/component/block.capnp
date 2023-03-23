@@ -79,3 +79,9 @@ struct BTCExplicitlyAttachedSidesMAttachSide {
 	ctx @0 :World.ComponentWorldBlockContext;
 	newData @1 :World.BlockSmallData;
 }
+
+# S->C
+struct BTCDTreeTrunkMUpdate {
+	ctx @0 :World.ComponentWorldBlockContext;
+	newData @1 :World.BlockSmallData;
+}
