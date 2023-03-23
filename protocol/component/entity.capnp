@@ -38,8 +38,8 @@ struct ETCDRayPhysics {
 struct ETCDRayPhysicsMUpdate {
 	entity @0 :Util.PersistentHandle;
 	pos @1 :World.DecimalWorldPos;
-	speed @2 :Util.Vector3F;
-	hasHit @3 :Bool;
+	aimPos @2 :World.DecimalWorldPos;
+	speed @3 :Util.Vector3F;
 }
 
 struct ETCDCharacter {
