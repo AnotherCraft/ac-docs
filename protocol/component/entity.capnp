@@ -27,6 +27,21 @@ struct ETCPhysicsMUpdate {
 	data @3 :ETCDPhysics;
 }
 
+struct ETCDRayPhysics {
+	speed @0 :Util.Vector3F;
+	spawnTime @1 :Util.GameTime;
+	spawningEntity @2 :Util.PersistentHandle;
+	hasHit @3 :Bool;
+}
+
+# S->C
+struct ETCDRayPhysicsMUpdate {
+	entity @0 :Util.PersistentHandle;
+	pos @1 :World.DecimalWorldPos;
+	speed @2 :Util.Vector3F;
+	hasHit @3 :Bool;
+}
+
 struct ETCDCharacter {
 	storageInventory @0 :Inventory.Inventory;
 	equipmentInventory @1 :Inventory.Inventory;
@@ -57,11 +72,4 @@ struct ETCDLootInventory {
 
 struct ETCDDespawnTimeout {
 	despawnTime @0 :Util.GameTime;
-}
-
-struct ETCDRayPhysics {
-	speed @0 :Util.Vector3F;
-	spawnTime @1 :Util.GameTime;
-	spawningEntity @2 :Util.PersistentHandle;
-	hasHit @3 :Bool;
 }
