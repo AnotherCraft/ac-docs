@@ -85,3 +85,8 @@ struct Vector3F {
 	y @1 :Float32;
 	z @2 :Float32;
 }
+
+struct Damage {
+	types @0 :List(Identifier);
+	amounts @1 :List(Float32);
+}

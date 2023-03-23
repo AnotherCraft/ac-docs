@@ -39,3 +39,13 @@ struct EntityWorldChange {
 struct EntityRequest {
 	entity @0 :Util.PersistentHandle;
 }
+
+# S->C Copies EA_DamageReceived
+struct EntityDamageReceived {
+	entity @0 :Util.PersistentHandle;
+	damage @1 :Util.Damage;
+	actor @2 :Util.PersistentHandle;
+	item @3 :Util.PersistentHandle;
+	block @4 :World.WorldBlockContext;
+	ray @5 :World.CollisionRayState;
+}
