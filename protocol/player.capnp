@@ -46,6 +46,7 @@ struct PlayerCharacterPosition {
 struct PlayerPositionReport {
 	pos @0 :World.DecimalWorldPos;
 	aimPos @1 :World.DecimalWorldPos;
+	speed @2 :Util.Vector3F;
 }
 
 # C->S
@@ -58,4 +59,10 @@ struct HandCraftingRequest {
 struct ItemsThrowRequest {
 	items @0 :Item.ItemHandleStack;
 	targetPos @1 :World.DecimalWorldPos; # Where the thrown items should land
+}
+
+# C->S
+struct PlayerHandSlotUpdateRequest {
+	leftHandSlot @0 :Text;
+	rightHandSlot @1 :Text;
 }

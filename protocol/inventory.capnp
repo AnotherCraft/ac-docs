@@ -63,3 +63,9 @@ struct InventoryTransactionReport {
 	targetInventory @1 :Util.PersistentHandle;
 	targetSlot @2 :InventorySlotID;
 }
+
+# C->S
+struct InventoryAutoTransactionRequest {
+	items @0 :Item.ItemHandleStack;
+	targetInventory @1 :Util.PersistentHandle;
+}
