@@ -21,3 +21,9 @@ struct ItemStack {
 struct ItemHandleStack {
 	handles @0 :List(Util.PersistentHandle);
 }
+
+struct ItemPropertySet {
+	item @0 :Util.PersistentHandle;
+	property @1 :Util.Identifier;
+	value @2 :Util.Variant;
+}
