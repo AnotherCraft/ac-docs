@@ -21,9 +21,9 @@ struct BlockExtraSmallData {
 
 # Request for chunk data sent from client to server.
 # The server (eventually) responds with ChunkData.
-# After ChunkData is sent, the client also automatically receives all updates regarding the chunk.
-# Once a chunk is requested, the client cannot request it again before he cancels the current request with ChunkUnrequest (or server responds with Error)
 # The server does not have to process the request immediately - it can delay the response for example until the chunk is generated, or to space out the large amounts of data to be sent.
+# After the request is processed, the client starts automatically receiving all updates regarding the chunk, entities inside it etc (until ChunkUnrequest is processed).
+# Once a chunk is requested, the client cannot request it again before he cancels the current request with ChunkUnrequest (or server responds with Error)
 struct ChunkRequest {
 	world @0 :Util.UID;
 	positions @1 :List(ChunkPos);

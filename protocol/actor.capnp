@@ -102,3 +102,15 @@ struct ActorActionCancelRequest {
 	# If set, will cancel the action only the origin matches
 	originCondition @0 :Util.Identifier;
 }
+
+# S->C Sent whenever the status effect has been changed
+struct ActorStatusEffectUpdate {
+	actor @0 :Util.PersistentHandle;
+	effect @1 :ActorStatusEffect;
+}
+
+# S->C
+struct ActorStatusEffectRemoved {
+	actor @0 :Util.PersistentHandle;
+	effect @1 :Util.ID;
+}
