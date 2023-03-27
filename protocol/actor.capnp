@@ -26,7 +26,8 @@ struct ActorStatusEffect {
 }
 
 struct ActorStats {
-	persistentStats @0 :List(ActorStat);
+	stats @0 :List(ActorStat);
+	flags @1 :List(Util.UID);
 }
 
 struct ActorStat {
