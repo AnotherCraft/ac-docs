@@ -10,10 +10,12 @@ using Item = import "item.capnp";
 
 using ActionRequestID = UInt64;
 
+using ActorStatFlag = Util.Identifier;
+
 struct Actor {
 	persistentHandle @0 :Util.PersistentHandle;
 	statusEffects @1 :ActorStatusEffects;
-	stats @2 :ActorStats;
+	stats @2 :ActorStatsData;
 }
 
 struct ActorStatusEffects {
@@ -25,9 +27,9 @@ struct ActorStatusEffect {
 	data @1 :List(Util.AnyStructStruct);
 }
 
-struct ActorStats {
+struct ActorStatsData {
 	stats @0 :List(ActorStat);
-	flags @1 :List(Util.UID);
+	flags @1 :List(ActorStatFlag);
 }
 
 struct ActorStat {
@@ -35,8 +37,10 @@ struct ActorStat {
 	value @1 :Float32;
 }
 
-struct ActorStatsChanged {
-	
+# S->C
+struct ActorStats {
+	actor @0 :Util.PersistentHandle;
+	data @1 :ActorStatsData;
 }
 
 # S->C
