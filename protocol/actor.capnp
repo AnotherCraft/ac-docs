@@ -35,6 +35,10 @@ struct ActorStat {
 	value @1 :Float32;
 }
 
+struct ActorStatsChanged {
+	
+}
+
 # S->C
 struct ActorActionUpdate {
 	actor @0 :Util.PersistentHandle;
