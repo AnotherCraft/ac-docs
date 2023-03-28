@@ -58,10 +58,12 @@ struct InventoryTransactionRequest {
 
 # S->C
 # Marks that the items have been transferred to the last N positions in the stack on the target slot
+# Either itemHandles or items are provided (not both) - depending on whether the server things the full item serialization is useful.
 struct InventoryTransactionReport {
-	items @0 :Item.ItemHandleStack;
-	targetInventory @1 :Util.PersistentHandle;
-	targetSlot @2 :InventorySlotID;
+	itemHandles @0 :Item.ItemHandleStack;
+	items @1 :Item.ItemStack;
+	targetInventory @2 :Util.PersistentHandle;
+	targetSlot @3 :InventorySlotID;
 }
 
 # C->S
