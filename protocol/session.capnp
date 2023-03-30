@@ -37,3 +37,8 @@ struct ChatEvent {
 	type @0 :Util.Identifier;
 	content @1 :Util.TranslatableString;
 }
+
+# S->C
+struct DisconnectReport {
+	reason @0 :Util.TranslatableString;
+}
