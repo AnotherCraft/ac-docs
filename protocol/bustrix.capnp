@@ -21,3 +21,9 @@ struct BustrixBlockData {
 struct BustrixChunkData {
 	blocks @0 :List(BustrixBlockData);
 }
+
+# C->S on change, Storage
+struct BustrixClientData {
+	selectedPort @0 :Util.Identifier;
+	selectedWireType @1 :Util.ID;
+}
