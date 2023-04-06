@@ -40,7 +40,7 @@ struct BustrixWiringChanged {
 }
 
 # S->C
-struct BustrixEndpointConnectionChanged {
+struct BustrixConnectionChanged {
 	ctx @0 :World.WorldBlockContext;
 	port @1 :Util.Identifier;
 	wireType @2 :Util.ID; # 0 if disconnected
