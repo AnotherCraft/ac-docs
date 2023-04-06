@@ -15,18 +15,28 @@ struct BustrixBlockWireData {
 }
 
 struct BustrixBlockData {
-	cbi @0 :Chunk.ChunkBlockIndex;
-  wires @1 :List(BustrixBlockWireData);
+  wires @0 :List(BustrixBlockWireData);
 }
 
 struct BustrixChunkData {
-	blocks @0 :List(BustrixBlockData);
+	struct BlockRecord {
+		cbi @0 :Chunk.ChunkBlockIndex;
+		data @1 :BustrixBlockData;
+	}
+
+	blocks @0 :List(BlockRecord);
 }
 
 # C->S on change, Storage
 struct BustrixClientData {
 	selectedPort @0 :Util.Identifier;
 	selectedWireType @1 :Util.ID;
+}
+
+# S->C
+struct BustrixWiringChanged {
+	ctx @0 :World.WorldBlockContext;
+	data @1 :BustrixBlockData;
 }
 
 # S->C
