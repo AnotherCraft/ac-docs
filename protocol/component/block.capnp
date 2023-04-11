@@ -75,7 +75,14 @@ struct BTCModularWindowMOpen {
 	ctx @0 :World.ComponentWorldBlockContext;
 }
 
+# S->C
 struct BTCExplicitlyAttachedSidesMAttachSide {
+	ctx @0 :World.ComponentWorldBlockContext;
+	newData @1 :World.BlockSmallData;
+}
+
+# S->C
+struct BTCAutoAttachedSidesMChanged {
 	ctx @0 :World.ComponentWorldBlockContext;
 	newData @1 :World.BlockSmallData;
 }
