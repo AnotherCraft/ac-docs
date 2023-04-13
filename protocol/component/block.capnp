@@ -92,3 +92,9 @@ struct BTCDTreeTrunkMUpdate {
 	ctx @0 :World.ComponentWorldBlockContext;
 	newData @1 :World.BlockSmallData;
 }
+
+# S->C
+struct BTCDBustrixPowerPortMUpdate {
+	ctx @0 :World.ComponentWorldBlockContext;
+	energy @1 :Float32;
+}
