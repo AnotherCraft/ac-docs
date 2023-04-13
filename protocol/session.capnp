@@ -6,47 +6,39 @@ $Cxx.namespace("ACP");
 
 using Util = import "util.capnp";
 using Game = import "game.capnp";
+using World = import "world.capnp";
+using Chunk = import "chunk.capnp";
+using Entity = import "entity.capnp";
 
-# Info about the game server. Automatically sent when the client logs in.
+# S->C First message, automatically sent when a client connects to a server.
 struct ServerInfo {
-	version @0 :Text;
-	name @1 :Text;
-	description @2 :Text;
+	appID @0 :Text; # AnotherCraft server
+	serverName @1 :Text;
+	gameVersion @2 :Text;
 }
 
-# Request from the client to login as a defined player.
-# Server responds with Error or AuthChallenge
-# Login is stored in the client connection context on the server and does not need to be sent again.
-struct LoginRequest {
+# C->S Request from the client to login.
+struct AuthRequest {
 	login @0 :Text;
 }
 
-# Server challenging the player to authentize itself
-# The client is supposed to take the password and send the hashed and salted password through AuthResponse.
-# The password is stored on the server database as H(H(password + clientSalt) + serverSalt). ClientSalt is sent to the client in AuthChallenge. Inner hash is done on the client, outer hash is done on the server.
-struct AuthChallenge {
-	clientSalt @0 :Data;
+# S->C
+struct AuthResponse {
+	success @0 :Bool;
 }
 
-# Second phase of client authentization - see AuthChallenge.
-# Serve responds either with Error or LoginSuccess
-struct AuthRequest {
-	hashedPassword @0 :Data;
+# C->S
+struct ChatInput {
+	input @0 :Text;
 }
 
-# Message from the server saying that the client is fully authenticated and has entered the Game (but not a world/doesn't have to be linked to the entity yet)
-struct LoginSuccess {
-	gameInfo @0 :Game.GameInfo;
-	profiles @1 :List(PlayerProfile);
+# S->C
+struct ChatEvent {
+	type @0 :Util.Identifier;
+	content @1 :Util.TranslatableString;
 }
 
-struct PlayerProfile {
-	uid @0 :Util.UID;
-	name @1 :Text;
-}
-
-# Messages the server that the player wants to play as the given character
-# After sending this message, it the server is expected to send the WorldEnterNotification
-struct PlayerProfileSelectionRequest {
-	profile @0 :Util.UID;
+# S->C
+struct DisconnectReport {
+	reason @0 :Util.TranslatableString;
 }

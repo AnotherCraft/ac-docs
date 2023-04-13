@@ -12,13 +12,21 @@ using ChunkPos = World.ChunkPos;
 using ChunkPosT = World.ChunkPosT;
 using ChunkBlockIndex = World.ChunkBlockIndex;
 
+using BlockID = World.BlockID;
+using BlockSmallData = World.BlockSmallData;
+
+struct BlockExtraSmallData {
+	data @0 :List(BlockSmallData);
+}
+
 # Request for chunk data sent from client to server.
-# The server responds with either ChunkData or ChunkRequestFailure.
+# The server (eventually) responds with ChunkData.
+# The server does not have to process the request immediately - it can delay the response for example until the chunk is generated, or to space out the large amounts of data to be sent.
+# After the request is processed, the client starts automatically receiving all updates regarding the chunk, entities inside it etc (until ChunkUnrequest is processed).
 # Once a chunk is requested, the client cannot request it again before he cancels the current request with ChunkUnrequest (or server responds with Error)
-# The server does not have to respond immediately - it can delay the response for example until the chunk is generated, or to space out the large amounts of data to be sent.
 struct ChunkRequest {
 	world @0 :Util.UID;
-	pos @1 :List(ChunkPos);
+	positions @1 :List(ChunkPos);
 }
 
 # C->S message denoting that the client is no longer interested in given chunks.
@@ -26,19 +34,21 @@ struct ChunkRequest {
 # This also means that the server should unsubscribe the client from receiving updates for given chunks.
 struct ChunkUnrequest {
 	world @0 :Util.UID;
-	pos @1 :List(ChunkPos);
+	positions @1 :List(ChunkPos);
 }
 
 # S->C message containing data for a given chunk
+# S->C, SAVE
 # As soon as server sends this message, it has to start sending the client all updates related to the chunk (the subscription is implicit). The subscription then gets cancelled with ChunkUnrequest.
-struct ChunkData {
+struct Chunk {
+	world @9 :World.WorldID;
 	pos @0 :ChunkPos;
 	zOffset @1 :ChunkPosT;
 
 	struct SparseBlockRecord {
     cbi @0 :ChunkBlockIndex;
-    type @1 :World.BlockID;
-    smallData @2 :World.BlockSmallData;
+    type @1 :BlockID;
+    smallData @2 :BlockSmallData;
   }
 	
 	# Two alternative ways of passing chunk data:
