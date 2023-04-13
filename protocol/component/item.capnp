@@ -6,6 +6,7 @@ $Cxx.namespace("ACP");
 
 using Util = import "../util.capnp";
 using Item = import "../item.capnp";
+using Inventory = import "../inventory.capnp";
 
 struct ITCDStoredNumberProperty {
 	value @0 :Float32;
@@ -20,9 +21,9 @@ struct ITCDStoredMaterialProperty {
 }
 
 struct ITCDModularItem {
-	inv @0 :Item.Inventory;
+	inv @0 :Inventory.Inventory;
 }
 
 struct ITCDBag {
-	inv @0 :Item.Inventory;
+	inv @0 :Inventory.Inventory;
 }

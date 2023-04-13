@@ -6,24 +6,53 @@ $Cxx.namespace("ACP");
 
 using Util = import "../util.capnp";
 using Item = import "../item.capnp";
+using World = import "../world.capnp";
+using Inventory = import "../inventory.capnp";
 
 struct ETCDItem {
-	inv @0 :Item.Inventory;
+	inv @0 :Inventory.Inventory;
 }
 
 struct ETCDPhysics {
 	speed @0 :Util.Vector3F;
+	targetSpeed @1 :Util.Vector3F;
+	targetSpeedAcceleration @2 :Util.Vector3F;
+}
+
+# S->C
+struct ETCPhysicsMUpdate {
+	entity @0 :Util.PersistentHandle;
+	pos @1 :World.DecimalWorldPos;
+	aimPos @2 :World.DecimalWorldPos;
+	data @3 :ETCDPhysics;
+}
+
+struct ETCDRayPhysics {
+	speed @0 :Util.Vector3F;
+	spawnTime @1 :Util.GameTime;
+	spawningEntity @2 :Util.PersistentHandle;
+	hasHit @3 :Bool;
+}
+
+# S->C
+struct ETCDRayPhysicsMUpdate {
+	entity @0 :Util.PersistentHandle;
+	pos @1 :World.DecimalWorldPos;
+	aimPos @2 :World.DecimalWorldPos;
+	speed @3 :Util.Vector3F;
 }
 
 struct ETCDCharacter {
-	storageInventory @0 :Item.Inventory;
-	equipmentInventory @1 :Item.Inventory;
+	storageInventory @0 :Inventory.Inventory;
+	equipmentInventory @1 :Inventory.Inventory;
 }
 
 struct ETCDPlayer {
-	handCraftingInputInventory @0 :Item.Inventory;
-	handCraftingIntermediateOutputInventory @1 :Item.Inventory;
-	handCraftingOutputInventory @2 :Item.Inventory;
+	handCraftingInputInventory @0 :Inventory.Inventory;
+	handCraftingIntermediateOutputInventory @1 :Inventory.Inventory;
+	handCraftingOutputInventory @2 :Inventory.Inventory;
+	
+	cursorInventory @3 :Inventory.Inventory;
 }
 
 struct ETCDTreeSapling {
@@ -38,16 +67,9 @@ struct ETCDDumbAnimalAI {
 }
 
 struct ETCDLootInventory {
-	lootInventory @0 :Item.Inventory;
+	lootInventory @0 :Inventory.Inventory;
 }
 
 struct ETCDDespawnTimeout {
 	despawnTime @0 :Util.GameTime;
-}
-
-struct ETCDRayPhysics {
-	speed @0 :Util.Vector3F;
-	spawnTime @1 :Util.GameTime;
-	spawningEntity @2 :Util.PersistentHandle;
-	hasHit @3 :Bool;
 }

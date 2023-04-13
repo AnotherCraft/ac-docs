@@ -13,13 +13,20 @@ using Identifier = UInt32;
 # Handle for uniquely identifying various object like item instances, inventories and such, persistent across the whole game
 using PersistentHandle = UInt64;
 
+using TranslatableString = Text;
+
+struct Message {
+	type @0 :Identifier;
+	data @1 :AnyStruct;
+}
+
 # See Identifier
-struct IdentifierMapping {
-	struct Record {
+struct ProtocolStateUpdate {
+	struct IdentifierMapping {
 		id @0 :Identifier;
 		text @1 :Text;
 	}
-	data @0 :List(Record);
+	identifierMappings @0 :List(IdentifierMapping);
 }
 
 # Unique global identifier. It is supposed to be prefixed with the type of the identifier - for example 'block.XXX' or 'world.XX' or 'item.XXX'
@@ -39,6 +46,14 @@ struct Variant {
 		bool @5 :Bool;
 		ptr @6 :AnyPointer;
 	}
+}
+
+struct IdentifierVariantList {
+	struct Rec {
+		key @0 :Identifier;
+		value @1 :Variant;
+	}
+	data @0 :List(Rec);
 }
 
 struct AnyPointerStruct {
@@ -63,8 +78,15 @@ struct Error {
 	params @2 :List(Param);
 }
 
+using Decimal = Int64;
+
 struct Vector3F {
 	x @0 :Float32;
 	y @1 :Float32;
 	z @2 :Float32;
+}
+
+struct Damage {
+	types @0 :List(Identifier);
+	amounts @1 :List(Float32);
 }

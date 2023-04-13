@@ -6,19 +6,24 @@ $Cxx.namespace("ACP");
 
 using Util = import "util.capnp";
 
+struct Item {
+	type @0 :Util.ID;
+	persistentHandle @1 :Util.PersistentHandle;
+	data @2 :List(Util.AnyStructStruct);
+}
+
 struct ItemStack {
 	type @0 :Util.ID; # Item type ID
 	persistentHandles @1 :List(Util.PersistentHandle);
 	data @2 :List(Util.AnyStructStruct); # Flat array of item data; item count * serialize data count
 }
 
-struct Inventory {
-	persistentHandle @0 :Util.PersistentHandle;
-	slots @1 :List(ItemStack);
+struct ItemHandleStack {
+	handles @0 :List(Util.PersistentHandle);
 }
 
-struct Item {
-	type @0 :Util.ID;
-	persistentHandle @1 :Util.PersistentHandle;
-	data @2 :List(Util.AnyStructStruct);
+struct ItemPropertySet {
+	item @0 :Util.PersistentHandle;
+	property @1 :Util.Identifier;
+	value @2 :Util.Variant;
 }
