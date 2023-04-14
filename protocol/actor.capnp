@@ -89,6 +89,15 @@ struct ActorAction {
 	actionRequestID @8 :ActionRequestID;
 }
 
+# S->C Notifies tht the actor should play an animation
+struct ActorAnimationPlay {
+	actor @0 :Util.PersistentHandle;
+	animation @1 :Util.Identifier;
+	origin @2 :Util.Identifier;
+	startTime @3 :Util.GameTime;
+	endTime @4 :Util.GameTime;
+}
+
 # S->C
 struct ActorCurrentActionChanged {
 	actor @0 :Util.PersistentHandle;
