@@ -53,6 +53,15 @@ struct ETCDPlayer {
 	handCraftingOutputInventory @2 :Inventory.Inventory;
 	
 	cursorInventory @3 :Inventory.Inventory;
+
+	displayName @4 :Text;
+}
+
+# S->C
+struct ETCHumanoidCharacterMHandSlotChange {
+	entity @0 :Util.PersistentHandle;
+	leftHandSlot @1 :Text;
+	rightHandSlot @2 :Text;
 }
 
 struct ETCDTreeSapling {
