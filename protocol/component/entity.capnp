@@ -40,6 +40,7 @@ struct ETCDRayPhysicsMUpdate {
 	pos @1 :World.DecimalWorldPos;
 	aimPos @2 :World.DecimalWorldPos;
 	speed @3 :Util.Vector3F;
+	isActive @4 :Bool;
 }
 
 struct ETCDCharacter {
