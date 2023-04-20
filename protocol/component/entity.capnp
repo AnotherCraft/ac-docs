@@ -58,6 +58,11 @@ struct ETCDPlayer {
 	displayName @4 :Text;
 }
 
+struct ETCDHumanoidCharacter {
+	leftHandSlot @0 :Text;
+	rightHandSlot @1 :Text;
+}
+
 # S->C
 struct ETCHumanoidCharacterMHandSlotChange {
 	entity @0 :Util.PersistentHandle;
