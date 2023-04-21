@@ -17,6 +17,8 @@ struct ETCDPhysics {
 	speed @0 :Util.Vector3F;
 	targetSpeed @1 :Util.Vector3F;
 	targetSpeedAcceleration @2 :Util.Vector3F;
+	gravityEnabled @3 :Bool;
+	collisionsEnabled @4 :Bool;
 }
 
 # S->C
