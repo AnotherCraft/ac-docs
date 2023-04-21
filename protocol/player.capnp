@@ -43,13 +43,6 @@ struct PlayerCharacterPosition {
 }
 
 # C->S
-struct PlayerPositionReport {
-	pos @0 :World.DecimalWorldPos;
-	aimPos @1 :World.DecimalWorldPos;
-	speed @2 :Util.Vector3F;
-}
-
-# C->S
 struct HandCraftingRequest {
 	recipe @0 :Util.ID;	
 	actionRequestID @1 :Actor.ActionRequestID;
@@ -65,4 +58,15 @@ struct ItemsThrowRequest {
 struct PlayerHandSlotUpdateRequest {
 	leftHandSlot @0 :Text;
 	rightHandSlot @1 :Text;
+}
+
+# C->S
+struct PlayerControlsReport {
+	struct ControlValue {
+		control @0 :Util.Identifier;
+		value @1 :Float32;
+	}
+	nonzeroControlValues @0 :List(ControlValue);
+	onControls @1 :List(Util.Identifier);
+	aimPos @2 :World.DecimalWorldPos;
 }
