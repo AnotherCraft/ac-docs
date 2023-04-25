@@ -60,13 +60,17 @@ struct PlayerHandSlotUpdateRequest {
 	rightHandSlot @1 :Text;
 }
 
-# C->S
-struct PlayerControlsReport {
+struct ControlsData {
 	struct ControlValue {
 		control @0 :Util.Identifier;
 		value @1 :Float32;
 	}
 	nonzeroControlValues @0 :List(ControlValue);
 	onControls @1 :List(Util.Identifier);
-	aimPos @2 :World.DecimalWorldPos;
+}
+
+# C->S
+struct PlayerControlsReport {
+	controlsData @0 :ControlsData;
+	aimPos @1 :World.DecimalWorldPos;
 }
