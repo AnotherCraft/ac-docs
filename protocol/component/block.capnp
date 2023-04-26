@@ -98,3 +98,7 @@ struct BTCDBustrixPowerPortMUpdate {
 	ctx @0 :World.ComponentWorldBlockContext;
 	energy @1 :Float32;
 }
+
+struct BTCDAreaSensor {
+	timeoutTime @0 :Util.GameTime;
+}

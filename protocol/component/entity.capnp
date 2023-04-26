@@ -17,6 +17,8 @@ struct ETCDPhysics {
 	speed @0 :Util.Vector3F;
 	targetSpeed @1 :Util.Vector3F;
 	targetSpeedAcceleration @2 :Util.Vector3F;
+	gravityEnabled @3 :Bool;
+	collisionsEnabled @4 :Bool;
 }
 
 # S->C
@@ -40,6 +42,7 @@ struct ETCDRayPhysicsMUpdate {
 	pos @1 :World.DecimalWorldPos;
 	aimPos @2 :World.DecimalWorldPos;
 	speed @3 :Util.Vector3F;
+	isActive @4 :Bool;
 }
 
 struct ETCDCharacter {
@@ -53,6 +56,20 @@ struct ETCDPlayer {
 	handCraftingOutputInventory @2 :Inventory.Inventory;
 	
 	cursorInventory @3 :Inventory.Inventory;
+
+	displayName @4 :Text;
+}
+
+struct ETCDHumanoidCharacter {
+	leftHandSlot @0 :Text;
+	rightHandSlot @1 :Text;
+}
+
+# S->C
+struct ETCHumanoidCharacterMHandSlotChange {
+	entity @0 :Util.PersistentHandle;
+	leftHandSlot @1 :Text;
+	rightHandSlot @2 :Text;
 }
 
 struct ETCDTreeSapling {
