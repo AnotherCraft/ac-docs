@@ -67,10 +67,17 @@ struct ControlsData {
 	}
 	nonzeroControlValues @0 :List(ControlValue);
 	onControls @1 :List(Util.Identifier);
+	forwardNormal @2 :Util.Vector3F;
 }
 
 # C->S
 struct PlayerControlsReport {
 	controlsData @0 :ControlsData;
 	aimPos @1 :World.DecimalWorldPos;
+	clientStepID @2 :Util.GameStepID;
+}
+
+# S->C
+struct PlayerControlsPingback {
+	clientStepID @0 :Util.GameStepID;
 }
