@@ -17,10 +17,7 @@ struct ETCDPhysics {
 	speed @0 :Util.Vector3F;
 	targetSpeed @1 :Util.Vector3F;
 	targetSpeedAcceleration @2 :Util.Vector3F;
-	gravityEnabled @3 :Bool;
-	collisionsEnabled @4 :Bool;
-	isOnGround @5 :Bool; # isOnGround needs to be serialized because of player physics replays (would desync if this value would not be set correctly)
-	effectiveSpeed @6 :Util.Vector3F;
+	flags @3 :UInt8;
 }
 
 # S->C
