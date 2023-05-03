@@ -80,4 +80,5 @@ struct PlayerControlsReport {
 # S->C
 struct PlayerControlsPingback {
 	clientStepID @0 :Util.GameStepID;
+	serverStepDiff @1 :Util.GameStepID; # Server steps between the current and last pingback
 }
