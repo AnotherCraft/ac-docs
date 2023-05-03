@@ -35,6 +35,8 @@ using UID = Identifier;
 using ID = UInt16;
 
 using GameTime = Int64;
+using GameTimeDuration = Int64;
+using GameStepID = UInt64;
 
 struct Variant {
 	union {

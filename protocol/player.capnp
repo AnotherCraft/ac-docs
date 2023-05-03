@@ -43,13 +43,6 @@ struct PlayerCharacterPosition {
 }
 
 # C->S
-struct PlayerPositionReport {
-	pos @0 :World.DecimalWorldPos;
-	aimPos @1 :World.DecimalWorldPos;
-	speed @2 :Util.Vector3F;
-}
-
-# C->S
 struct HandCraftingRequest {
 	recipe @0 :Util.ID;	
 	actionRequestID @1 :Actor.ActionRequestID;
@@ -65,4 +58,27 @@ struct ItemsThrowRequest {
 struct PlayerHandSlotUpdateRequest {
 	leftHandSlot @0 :Text;
 	rightHandSlot @1 :Text;
+}
+
+struct ControlsData {
+	struct ControlValue {
+		control @0 :Util.Identifier;
+		value @1 :Float32;
+	}
+	nonzeroControlValues @0 :List(ControlValue);
+	onControls @1 :List(Util.Identifier);
+	forwardNormal @2 :Util.Vector3F;
+}
+
+# C->S
+struct PlayerControlsReport {
+	controlsData @0 :ControlsData;
+	aimPos @1 :World.DecimalWorldPos;
+	clientStepID @2 :Util.GameStepID;
+}
+
+# S->C
+struct PlayerControlsPingback {
+	clientStepID @0 :Util.GameStepID;
+	serverStepDiff @1 :Util.GameStepID; # Server steps between the current and last pingback
 }
