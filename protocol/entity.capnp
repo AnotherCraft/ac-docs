@@ -49,3 +49,11 @@ struct EntityDamageReceived {
 	block @4 :World.WorldBlockContext;
 	ray @5 :World.CollisionRayState;
 }
+
+# S->C
+struct EntityVisualAction {
+	entity @0 :Util.PersistentHandle;
+	animation @1 :Util.Identifier; # If set, an animation will be played
+	sound @2 :Util.Identifier; # If set, a characteristic sound will be played
+	flags @3 :UInt8;
+}
