@@ -18,6 +18,7 @@ struct ETCDPhysics {
 	targetSpeed @1 :Util.Vector3F;
 	targetSpeedAcceleration @2 :Util.Vector3F;
 	flags @3 :UInt8;
+	isActive @4 :Bool;
 }
 
 # S->C
@@ -26,6 +27,7 @@ struct ETCPhysicsMUpdate {
 	pos @1 :World.DecimalWorldPos;
 	aimPos @2 :World.DecimalWorldPos;
 	data @3 :ETCDPhysics;
+	isActive @4 :Bool;
 }
 
 struct ETCDRayPhysics {
@@ -33,6 +35,7 @@ struct ETCDRayPhysics {
 	spawnTime @1 :Util.GameTime;
 	spawningEntity @2 :Util.PersistentHandle;
 	hasHit @3 :Bool;
+	isActive @4 :Bool;
 }
 
 # S->C
