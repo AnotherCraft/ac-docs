@@ -12,10 +12,10 @@ records:
         type: Vector3F
         default: 1
 
-      - name: friction
+      - name: contactFriction
         type: Vector3F
         default: 30
-        description: Friction the collider applies, separate for each direction.
+        description: Friction the collider applies on contact with other colliders, separate for each direction.
 
       - name: rayCastOnly
         type: bool
