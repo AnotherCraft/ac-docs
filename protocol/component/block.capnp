@@ -76,9 +76,10 @@ struct BTCModularWindowMOpen {
 }
 
 # S->C
-struct BTCExplicitlyAttachedSidesMAttachSide {
+struct BTCExplicitlyAttachedSidesMChanged {
 	ctx @0 :World.ComponentWorldBlockContext;
 	newData @1 :World.BlockSmallData;
+	createEffects @2 :Bool;
 }
 
 # S->C
