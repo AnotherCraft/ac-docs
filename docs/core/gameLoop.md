@@ -20,7 +20,10 @@ Game step contains following steps:
    1. Client/server component world step
    2. Chunk loader step
 3. Client component step (audio update)
-4. Tasks execution
+4. In the future, there could be a "parallel step" here, where the game state would be immutable, but actors could read from it in parallel and do some processing.
+   * This would be followed by a sequential "post parallel step" that would apply the computations.
+   * This could be utilized for example for physics processing (assuming there would be some resolution mechanics if two dynamic objects would be colliding with each other), liquid/energy simulations and so on.
+5. Tasks execution
    1. End step callbacks (entity step, block step, ... whatever that requested end step callback)
    2. Timers execution
-5. Server sends `ACP::StepSync`
+6. Server sends `ACP::StepSync`
