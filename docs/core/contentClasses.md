@@ -7,6 +7,7 @@ Here is a list of the most important content-related classes:
 | `BlockType`        | (`WorldBlockContext` rebindable reference) | yes       | Represents voxels                                            |
 | `EntityType`       | `EntityInstance`                           | yes       | Stuff in the world that doesn't adhere to the voxel grid - players, NPCs, animals, ... |
 | `ItemType`         | `Item`                                     | yes       |                                                              |
+| `ItemTag`          |                                            |           |                                                              |
 | (not typed)        | `Inventory`                                | yes       | Containers for items                                         |
 | `CraftingRecipe`   | (not instanced)                            | yes       | Used for transforming items into other items (and some extra stuff) |
 | (not typed)        | `CraftingStation`                          | yes       |                                                              |
@@ -15,6 +16,8 @@ Here is a list of the most important content-related classes:
 | `StatusEffectType` | `StatusEffectInstance`                     | yes       | Can be applied on actors and modify their stats, deal damage over time or other various behaviors. |
 | (not typed)        | `ActorAction`                              |           | Actions that can be performed by actors - for example swing a blade and damage something, build a block, shoot a bow, ... |
 | `Material`         |                                            |           |                                                              |
+| `DamageType`       |                                            |           |                                                              |
+| `RigAnimation`     |                                            |           |                                                              |
 | `BustrixWireType`  |                                            |           |                                                              |
 | `BustrixBusType`   |                                            |           |                                                              |
 

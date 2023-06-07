@@ -9,8 +9,6 @@
   * The value can be changed however in `Game::stepsPerSecond`.
   * In the future, it could be possible to increase step time if server is not keeping up. This would have to be broadcasted to the clients so that they would also lower their step time locally.
 
-
-
 ## Game step
 
 Game step contains following steps:

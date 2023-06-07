@@ -55,4 +55,4 @@ To do this, simply set the model file to the appropriate `.js` model definition.
 
 ## `.fbx` files
 FBX files are currently supported for animated characters. FBX format is used because it allows defining bones and animations.
-See [Character models and animations](characterModelsndAnimations.md).
+See [Character models and animations](characterModelsAndAnimations.md).
