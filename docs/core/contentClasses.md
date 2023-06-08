@@ -7,7 +7,7 @@ Here is a list of the most important content-related classes:
 | `BlockType`        | (`WorldBlockContext` rebindable reference) | yes       | Represents voxels                                            |
 | `EntityType`       | `EntityInstance`                           | yes       | Stuff in the world that doesn't adhere to the voxel grid - players, NPCs, animals, ... |
 | `ItemType`         | `Item`                                     | yes       |                                                              |
-| `ItemTag`          |                                            |           |                                                              |
+| `ItemTag`          |                                            |           | `Identifier` based, useful for organizing/filtering items.   |
 | (not typed)        | `Inventory`                                | yes       | Containers for items                                         |
 | `CraftingRecipe`   | (not instanced)                            | yes       | Used for transforming items into other items (and some extra stuff) |
 | (not typed)        | `CraftingStation`                          | yes       |                                                              |
