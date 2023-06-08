@@ -19,7 +19,8 @@
 
   * You can either use visual graph editor you can find in the `ac-graphed` repository.
     * See `bin/data/mods/core/animation/humanoid_attack.anim.json` for the example.
-
+    * ![image-20230608113322256](assets/image-20230608113322256.png)
+    
   * Or you can define the animations in code through Assemblyscript.
     * See `bin/api/assemblyscript/ac/dataflow.ts` for the API.
     * See `bin/data/mods/core/animation/entity/humanoid.anim.ts` for the example.
