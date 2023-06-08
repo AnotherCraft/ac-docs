@@ -1,5 +1,6 @@
 # TODO
 
+* mesh generation, light propagation, ...
 * game types
 * component tyoes
 * yaml
