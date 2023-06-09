@@ -9,6 +9,6 @@
 * inventories
 * inventory transactions
 * crafting
-* handleObject, persistentHandleObject
 * shaders
-* visual effects pipeline
+* hive
+

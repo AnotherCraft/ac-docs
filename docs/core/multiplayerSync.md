@@ -12,6 +12,7 @@
 
   * Clients keep buffer of incoming messages and always process one step worth of messages on the beginning of their game step. This is to combat network jitter.
     * In the future, a strategy that gradually reduces the buffer size when it gets larger than one could be implemented.
+* Login procedure is implemented in `PrototypeResources::initGame2`.
 
 
 ##  Player movement
@@ -22,3 +23,13 @@
 * When the client receives update of the player position/speed/movement data from the server, it replays  some of the inputs because of client-server delay (https://www.gabrielgambetta.com/client-side-prediction-server-reconciliation.html).
 * Server keeps buffer of received controls snapshots from the client and always processes a single message each step (to combat network jitter).
   * In the future, a strategy that gradually reduces the buffer size when it gets larger than one could be implemented.
+
+## Block, item, entity updates
+
+* Block and item updates are handled by the respective component/system that is relevant for the update.
+
+* For block properties, `ACP::BlockSetProperty` message is broadcasted right inside `BA_SetProperty` callback structure and vice versa with item properties.
+
+* Entity position updates are realized through their respective physics components (currently we can have `ETC_Physics` or `ETC_RayPhysics`).
+  * These updates are issued through the `EA_SendUpdate` callback, which is called from `World_ServerComponent::step`.
+  * These updates are currently sent each frame , but that's not necessary, because physics are calculated on clients as well – the system could employ a round-robin updates sending of different chunks to reduce network bandwidth.
