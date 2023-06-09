@@ -1,7 +1,6 @@
 # TODO
 
-* mesh generation, light propagation, ...
-* game types
+* light propagation, ...
 * component tyoes
 * yaml
 * collisions/physics?
@@ -9,6 +8,3 @@
 * inventories
 * inventory transactions
 * crafting
-* shaders
-* hive
-
