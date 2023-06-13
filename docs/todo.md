@@ -1,6 +1,5 @@
 # TODO
-
-* light propagation, ...
+* how items/inventories/entities serialization/deserialization
 * component tyoes
 * yaml
 * collisions/physics?

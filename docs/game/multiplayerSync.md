@@ -24,11 +24,16 @@
 * Server keeps buffer of received controls snapshots from the client and always processes a single message each step (to combat network jitter).
   * In the future, a strategy that gradually reduces the buffer size when it gets larger than one could be implemented.
 
+## Entity, item, inventory updates
+
+Entities and items use a bit different approach, because they are mobile and can be moved between chunks.
+
+* Each entity and item and inventory that is sent to a client has a unique persistent UID.
+* Inventories are not considered to be self-sustaining, they can get to client only as a part of something else, for example chest -> inventory (`INC_BlockInventory`) inside block, bag -> inventory inside item (`INC_BagInventory`/`INC_ItemNestedInventory`), entity inventory (`INC_EntityPublic/Private/EquipmentInventory`). There are components for the inventory that handle obtaining the subscribers list from parent objects.
+  * Inventories are sent to clients as a part of the initial serialization of a given component and do not really have any events
+* Items are also not self-sustaining and have to (almost) always be inside an inventory to be considered.
+
 ## Block, item, entity updates
-
-* Block and item updates are handled by the respective component/system that is relevant for the update.
-
-* For block properties, `ACP::BlockSetProperty` message is broadcasted right inside `BA_SetProperty` callback structure and vice versa with item properties.
 
 * Entity position updates are realized through their respective physics components (currently we can have `ETC_Physics` or `ETC_RayPhysics`).
   * These updates are issued through the `EA_SendUpdate` callback, which is called from `World_ServerComponent::step`.

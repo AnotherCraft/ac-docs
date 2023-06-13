@@ -9,6 +9,7 @@ Typical situations where you want to use Identifier instead of a string:
 * Various UIDs
 * Hash table/property keys
 * Translation keys
+* Identifying multiplayer messages
 
 Situations where you don't want to be using Identifiers:
 
