@@ -9,6 +9,15 @@ See [worlds](worlds.md) to read how blocks are stored. The short version:
 
 New blocks can be created using `BA_Init::exect`. Blocks can be destroyed using `BA_Uninit::exec`.
 
+## Referencing blocks
+
+For working with blocks and referencing them, there's the `WorldBlockContext` class that's the main thing used for working with blocks.
+
+* The class can be bound (and rebound) to any (loaded) block in the game.
+  * There are multiple `bind` functions,  optimized variants for rebinding to neighbours or other blocks in the chunk.
+* The class provides functions to read block type (setting the block type should be done via `BA_Init::exec` in most situations) and access the data.
+* There are also other utility functions like getting/setting mining progress, notifying changes (asking for static render, block id upload, light map recalculation, ...)
+
 ## Multiplayer synchronization
 
 * The player first receives block information as a part of the `ACP::Chunk` message. At the same time, he also gets subscribed to the chunk and will receive all further updates until `ACP::ChunkUnrequest` is received.

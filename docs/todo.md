@@ -1,5 +1,5 @@
 # TODO
-* how items/inventories/entities serialization/deserialization
+* items serialization/deserialization
 * component tyoes
 * yaml
 * collisions/physics?
@@ -7,3 +7,6 @@
 * inventories
 * inventory transactions
 * crafting
+* how player inventory works (slots, hotbars, WoW style bags)
+* actions
+
