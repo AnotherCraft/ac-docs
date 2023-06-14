@@ -85,3 +85,48 @@ For the practical example of how properties can be wired together, let's conside
     * `propertyChangeTriggers` makes sure the output gets recomputed whenever `a` or `b` changes
   * The `BustrixBooleanOutput` then adds the bustrix output port and sets it to the computed `value` property we've defined before.
 
+## Some interesting block type components
+
+This is not a complete list, also the description/specification is not complete
+
+- Shapes
+  - Block shapes
+    - **`BTC_UniformBlockShape`** - block shape with all sides the same texture
+    - `BTC_UniformSidesBlockShape` - block shape, side textures are the same, different top and bottom texture
+  - Cross shapes
+    - `BTC_CrossShape` - two quads in the + shape
+    - `BTC_HashShape` - four quads in the # shape
+    - `BTC_DiagonalCrossShape` - two quads in the X shape
+    - `BTC_CrossShape3D` - three quads in the 3D + shape
+  - Model shapes
+    - **`BTC_ModelShape`** - shape that is loaded from a model file (OBJ/JSCAD)
+    - `BTC_MaterialModelShape` - shape loaded from a model file (OBJ/JSCAD), textures applied based on a material property of the block
+  - Other
+    - `BTC_PoleShape`
+    - `BTC_PipeShape`
+    - `BTC_WallShape`
+    - `BTC_DoorShape`
+- Collisions
+  - **`BTC_BoxCollider`**
+  - **`BTC_AreaStatusEffect`** - applies a status effect to actors that enter the area
+- Interaction
+  - Interaction
+    - `BTC_InstantInteraction` - interaction behavior is executed immediately when player clicks on the block
+    - **`BTC_BasicInteraction`** - the interaction takes some time to be executed (animation is played, progress bar is shown)
+  - Interaction behavior
+    - `BTC_ModularWindowInteractionBehavior` - a UI window is shown
+  - Mining
+    - `BTC_DamageMining` - when block receives damage, it is translated into mining progress
+    - `BTC_MinedDestroy` - the block gets destroyed when mining progress reaches 100%
+    - `BTC_MinedItemDrop` - the block drops defined items when destroyed by mining
+- Station
+  - **`BTC_Inventory`** - the block contains a publicly accessible inventory (chest)
+  - `BTC_ManualCraftingStation` - the block contains a crafting station a player can use for crafting, can enable him to use recipes otherwise unacessible
+  - `BTC_AutoCraftingStation` - crafting station that can craft on its own without requiring player to be present (has a custom actor)
+- Effects
+  - `BTC_AudioSource`
+  - `BTC_ParticleEmitter`
+  - `BTC_LightEmitter`
+- Utils
+  - **`BTC_HorizontalOrientation`** components alongside with a few accompanying callbacks provides API for making the block have an orientation – this typically means ability to rotate the block. There are also some interesting orientation flags like upside down orientation or half step rotations (45 degrees).
+  - `BTC_AttachedSidesBase` and `BTC_AttachableSidesBase` provides mechanics for attaching blocks to neighbouring blocks – this can be used say for connecting fences, pipes, attaching lamps and torches to walls, grass to the ground (it can be configured that the block gets destroyed once there's nothing to attach to) and so on.

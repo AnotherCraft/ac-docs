@@ -9,5 +9,6 @@
 * crafting
 * how player inventory works (slots, hotbars, WoW style bags)
 * actions, item actions and behaviors, block interactions and behaviors
+* damage, mining
 * mod API
 
