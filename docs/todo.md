@@ -1,12 +1,13 @@
 # TODO
-* items serialization/deserialization
 * component tyoes
 * yaml
+  * Basic concepts - non-required fields
+  * Format of some basic types
+  * Composite properties
 * collisions/physics?
-* items
-* inventories
 * inventory transactions
 * crafting
 * how player inventory works (slots, hotbars, WoW style bags)
-* actions
+* actions, item actions and behaviors, block interactions and behaviors
+* mod API
 
