@@ -1,4 +1,5 @@
 # TODO
+* block interactions
 * component tyoes
 * yaml
   * Basic concepts - non-required fields
