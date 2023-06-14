@@ -5,9 +5,6 @@
   * Format of some basic types
   * Composite properties
 * collisions/physics?
-* inventory transactions
-* crafting
-* how player inventory works (slots, hotbars, WoW style bags)
 * actions, item actions and behaviors, block interactions and behaviors
 * damage, mining
 * mod API

@@ -10,6 +10,14 @@ I think it's not necessary to explain what items are.
 * Items can be equipped onto entities. In that case, they're rendered through `IA_EquippedRender`
 * Items also have icon that is used in the GUI - that one uses `IA_Icon`.
 
+### Item uniqueness
+
+In AnotherCraft, generally, most items are intended to be unique – even stuff like dirt might have parameters like dirt quality. This goes a bit against the standard item stack based approach – how do you want to stack and organize items when each of them is unique?
+
+Well, AnotherCraft has a unique solution for that. You still work with stacks of items of the same type, but you're also able to granularly inspect and manipulate with the individual items within the stack. This is done through the context menu. There is more functionality intended for the future like sorting and filtering of the items in the stack.
+
+![image-20230614165026336](assets/image-20230614165026336.png)
+
 ## Multiplayer synchronization
 
 * Client receives updates to items that are in an inventory that is in a subscribed chunk (or possibly the inventory has subscription through other means which are not implemented yet).
