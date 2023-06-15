@@ -67,3 +67,11 @@ Blocks provide symmetrical action API to the items, except for blocks, it's call
 
 Some interesting block interaction behaviors:
 
+* `BTC_ToggleBooleanPropertyInteractionBehavior` toggles a stored boolean property. This is useful say for levers.
+  * This feels to specific. Maybe this should be rather solved via the modding API.
+* `BTC_ModularWindowInteractionBehavior` opens a modular window upon interaction. The contents of the window is determined from other components using the `BA_ModularWindowConfig` callback. Some components that provide modules are:
+  * `BTC_Inventory`
+  * `BTC_AutoCraftingStation`
+  * `BTC_ManualCraftingStation`
+  * `BTC_TextEditorModule`
+
