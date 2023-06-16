@@ -30,9 +30,10 @@ For blocks, the `BTC_MaterialModelShape` component enables a way to use a templa
 ## OpenJSCAD `.js` files
 AnotherCraft supports defining models in OpenJSCAD `.js` files. The files are automatically compiled into `.obj` files in the background. See https://github.com/jscad/OpenJSCAD.org#documentation for OpenJSCAD info and documentation.
 
-The compiling to `.obj` files is done using the [JSCAD package](https://github.com/AnotherCraft/ac-jscad) that is shiped with the AC client.
+Compiling to `.obj` files is done using the [JSCAD package](https://github.com/AnotherCraft/ac-jscad) that is shiped with the AC client.
 
 ### Developing/preview of the OpenJSCAD files
+
 When creating the JSCAD models, it's of course very beneficial to have a live preview of the model. This can be done using the [openjscad.xyz website](https://openjscad.xyz/) (Chrome recommended). Loading the model up is a bit unintuitive, as the `Load a JSCAD project` works with project directories, not individual files, but you can load the single `.js` model file up by simply drag & dropping it to the window.
 
 To make the model files work both in the online editor and with the OpenJSCAD compiler, the header code should look like this:

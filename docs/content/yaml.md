@@ -15,7 +15,7 @@ The directory structure is like follows:
       * mod name (for example `core`) - you can add your own files with mods
         * `mod.yaml`: mod manifest (the contents are not used anywhere yet, but the file has to be in the folder)
         * `animation`: [animation files](characterModelsAndAnimations.md) - either `.json` graph files created by [AC-Graphed](https://github.com/AnotherCraft/ac-graphed) or `.ts` AssemblyScript files using the `api/assemblyscript/ac/dataflow.ts` API (which basically generates a `json` file).
-        * `code`: AssemblyScript code files
+        * `code`: AssemblyScript code files. The mod api tries to find the `mod.ts` file. Other files are ignored - the `mod.ts` is expected to import them if they're to be used.
         * `content`: `yaml` files defining content.
           * Files prefixed with `_` are skipped.
         * `env`: environment files (define color gradients and parameters for skybox, lighting and such – configurable in UI through the control panel)
@@ -85,12 +85,12 @@ Component game types (such as `BlockType`, `ItemType`, `InventoryType`) read the
 
 * Enum types accept string value names. The comparison is case insensitive, it is recommended to use camelCase though.
 
-* Vectors accept either:
+* **Vectors** accept either:
 
   * A single numerical value (in that case all components are set to the  value)
   * A sequence (preferrably in the `[a, b, c]` syntax); if the sequence is smaller than the vector dimensionality, remaining dimensions are set to 0.
 
-* Bounding boxes are a bit complicated.
+* **Bounding boxes** are a bit complicated.
   There are multiple ways how bounding box can be defined:
 
   * From lo (first argument) and hi (second argument) vectors (the `box` key; default first argument = `0`)
@@ -108,6 +108,68 @@ Component game types (such as `BlockType`, `ItemType`, `InventoryType`) read the
     * For example `centerSize: [1, 0.5, 2]` would create a bounding box `lo=[0, 0.25, -0.5] hi=[1, 0.75, 1.5]` for block colliders or `lo=[-0.5, -0.25, -1] hi=[0.5, 0.25, 1]` for entity colliders
   * If the value is a 6-size sequence, the first argument is constructed from the first three values and the second argument from the second three values.
     * For example `box: [0, 1, 2, 3, 4, 5]` would create a bounding box `lo=[0, 1, 2] hi=[3, 4, 5]`
+
+* **Inline mod api functions** (represented by the `ModAPIInlineFunction` class) accept either:
+
+  * Numerical value if the function expects `float` return type (in this case the value is static and the mod api backend is not used at all)
+
+  * `true`, `false`, `0` or `1` if the function expects `bool` return type (ditto about the staticity)
+
+  * Callback name that that is registered in the `mod.ts` code file with the `::` prefix added. The callback has to be registered through the `ac.registerCallback` function. So for example your `mod.ts` file would contain:
+    ```typescript
+    export var treeParams_oak = ac.registerCallback((a: ac.TreeGrowthParamsArgs) : ac.TreeGrowthParams => {
+    	let r = new ac.TreeGrowthParams();
+    	r.sideBranchInvestment = a.depth > 1 ? 0.8 : 0.2;
+    	r.growAlongProbability = a.length < 3 ? 1 : 0.95;
+    	r.growUpwardsProbability = a.depth > 0 ? 0.2 : 0.95;
+    	r.growHorizontallyProbability = 0.95;
+    	r.branchHorizontallyProbability = mapClamp(0, 0.7, 2, 8, a.length + a.depth * 2);
+    	r.leavesProbability = mapClamp(0, 0.9, 0, 2, a.depth);
+    	return r;
+    });
+    ```
+
+    And you would refer to this function in yaml as:
+    ```YAML
+    - uid: block.core.sapling.oak
+      components:
+        - component: DiagonalCrossShape
+          texture:
+            file: sapling_oak.png
+            alphaChannel: alphaTest
+    
+        - component: TreeSapling
+          trunkBlock: block.core.trunk.oak
+          leavesBlock: block.core.leaves.oak
+          growPoints: 1024
+          selfInvestment: 0.5
+          growthParams: ::treeParams_oak # Reference to a function inside mod.ts
+    ```
+
+  * Inline code straight up included in the yaml. The default paramater names are defined in the `ModABIValueMeta` class template specialization for a given parameter type. For example see how the `value` computed property is defined in the bustrix AND gate:
+    ```YAML
+    - uid: block.core.bustrixAndGate
+      preset: preset.block.core.bustrixGate
+      components:
+        - component: BustrixBooleanInput
+          uid: input_a
+          name: a
+    
+        - component: BustrixBooleanInput
+          uid: input_b
+          name: b
+    
+        - component: BustrixBooleanOutput
+          property: value
+    
+        - component: ComputedBooleanProperty
+          name: value
+          value: block.booleanProperty("a") && block.booleanProperty("b") # This is an inline AssemblyScript code
+          cachingMethod: serverCached
+          propertyChangeTriggers: [a, b]
+    ```
+
+    
 
 ## Example files
 
