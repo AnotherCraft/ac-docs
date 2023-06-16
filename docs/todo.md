@@ -4,6 +4,7 @@
   * Basic concepts - non-required fields
   * Format of some basic types
   * Composite properties
-* collisions/physics?
+  * templates
+  * inline mod API functions
 * mod API
 
