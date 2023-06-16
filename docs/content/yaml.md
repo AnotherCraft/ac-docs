@@ -80,6 +80,18 @@ Component game types (such as `BlockType`, `ItemType`, `InventoryType`) read the
 
 * All keys are camelCase.
 * Uknown keys within type/component objects are ignored and do not raise erorrs. Some keys might only be used by server and some by client
+* The implementation should allow multiple consecutive calls to `loadFromConfig`, resp. `TA_LoadFromConfig` callbacks to add new config/introduce new components and such. If object keys are not present, don't change them. 
+
+## Preset files
+
+Presets are a way to use the same yaml config codebase in multiple occurences.
+
+* Presets have a dedicated folder `preset` in the mod directory.
+* All `.yaml` files inside the folder are scanned (except for those prefixed with `_`).
+* The root node is again expected to be a sequence.
+* The sequence elements are again expected to be objects.
+* There is expected to be a `uid` key in each object, containing the preset UID (beginning with `preset.`).
+* Yaml objects for game types then can have the `preset` key in the root object.  If present, the type `loadFromConfig` function gets first called with the contents of the preset passed as an argument. Then a second `loadFromConfig` call is done for the actual object.
 
 ## YAML config formats of some classes
 
