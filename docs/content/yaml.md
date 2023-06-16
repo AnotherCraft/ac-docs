@@ -169,7 +169,7 @@ Component game types (such as `BlockType`, `ItemType`, `InventoryType`) read the
           propertyChangeTriggers: [a, b]
     ```
 
-    
+    * The inline code snippets are compiled as the `bootstrap.ts` file in the mod root directory.
 
 ## Example files
 
