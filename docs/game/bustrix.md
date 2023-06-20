@@ -33,7 +33,14 @@ Bustrix is implemented as a standalone subsystem, injecting its behavior via wor
 
 Bustrix also has its own separate voxel grid for wire data. The voxel grid is sparse, meaning it's implemented as a hash table `ChunkBlockIndex -> BustrixBlockData` for each chunk.
 
+## Buses construction, value invalidation and such
+
+Endpoint ports connected through wires form buses. Buses are represented by the `BustrixBus` class. The buses are initialized lazily (meaning to `BustrixBus` instance is created until someone requests it) and are destroyed whenever any of the blocks it goes through changes (`World_BustrixComponent_Server::invalidateBuses`) – it has to be created again then.
+
+In an attempt to make this more optimized (reducing array pushes and pops when creating/destroying buses), the buses are stored within a Bloom Filter Tree where the tree key is a bitwise or of hashes (special hash with reduced number of set bits) of all blocks a bus is related with. For retrieving the list of buses that are related to a given block, a hash is computed of the block position and the tree is searched for all record where `lookupKey & recKey == lookupKey`.
+
 ## Content
+
 - Bus types
     - `bus.booleanValue`
         - Logical value bus, similar to Minecraft. Endpoint ports can be output (provide value to the bus) or input (read value from the bus). If there are multiple output ports on the bus, the value is ORed.
