@@ -80,5 +80,4 @@ AnotherCraft has a number of visual effects implemented:
   - Clouds are dynamic, change and move (generated on GPU)
 - Atmospheric tint, blur
 - God rays
-
-- - 
+- Bloom

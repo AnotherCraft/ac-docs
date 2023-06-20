@@ -183,6 +183,10 @@ Presets are a way to use the same yaml config codebase in multiple occurences.
 
     * The inline code snippets are compiled as the `bootstrap.ts` file in the mod root directory.
 
+## File lookup context
+
+When referencing resources like textures, models, sounds et cetera in yaml files, the filenames are looked up within a `FileLookupContext` that is defined. File lookup context is basically a list of directories the engine should look into when searching for a specified file.  The lookup contexts depends on what type of resource the modder is currently referencing – textures will be looked up in the `texture` directory within the mode root directory, sounds will be looked up in `sound` and so on.
+
 ## Example files
 
 Let’s take for example a definition of door in yaml:
