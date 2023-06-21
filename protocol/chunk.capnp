@@ -41,9 +41,10 @@ struct ChunkUnrequest {
 # S->C, SAVE
 # As soon as server sends this message, it has to start sending the client all updates related to the chunk (the subscription is implicit). The subscription then gets cancelled with ChunkUnrequest.
 struct Chunk {
-	world @9 :World.WorldID;
-	pos @0 :ChunkPos;
-	zOffset @1 :ChunkPosT;
+	world @0 :World.WorldID;
+	pos @1 :ChunkPos;
+	zOffset @2 :ChunkPosT;
+	flags @3 :UInt8;
 
 	struct SparseBlockRecord {
     cbi @0 :ChunkBlockIndex;
@@ -57,18 +58,18 @@ struct Chunk {
 	union {
 		rawData :group {
 			# Flat array of all the block IDs in the chunk (65536)
-			rawBlockIDs @2 :Data;
+			rawBlockIDs @4 :Data;
 
 			# Flat array of all the block small data in the chunk (65536)
-			rawSmallData @3 :Data;
+			rawSmallData @5 :Data;
 		}
 
 		sparseData :group {
-			sparseBlocks @4 :List(SparseBlockRecord);
+			sparseBlocks @6 :List(SparseBlockRecord);
 
 			# For optimization reasons, server also needs to tell the client which positions around the sparseBlocks are occupied with opaque blocks.
 			# It doesn't have to tell what blocks those are, just that there are fully opaque blocks (so that the client knows it shouldn't render those sides of the blocks)
-			occupiedBlocks @5 :List(ChunkBlockIndex);
+			occupiedBlocks @7 :List(ChunkBlockIndex);
 		}
 	}
 
@@ -77,9 +78,9 @@ struct Chunk {
 		cbi @0 :ChunkBlockIndex;
 		data @1 :List(Util.AnyStructStruct); # List of extra data, can also incorporate extra small data (List(BlockExtraSmallData)). Order of the data is determined by the #blockUID_serializeDataMapping
 	}
-	extraData @6 :List(ExtraDataRecord);
+	extraData @8 :List(ExtraDataRecord);
 
-	entities @7 :List(Entity.Entity);
+	entities @9 :List(Entity.Entity);
 
-	subsystemData @8 :List(Util.AnyStructStruct);
+	subsystemData @10 :List(Util.AnyStructStruct);
 }
