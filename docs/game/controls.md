@@ -1,6 +1,8 @@
 # Controls
 
-The game engine has a custom controls system implemented. The controls are fully customizable in the game settings and are stored within the hive.
+The game engine has a custom controls system implemented. The controls are fully customizable in the game settings and are stored within the hive. The game supports Keyboard and Gamepad inputs.
+
+It's also worth noting that the game operates in two mouse modes GUI control (visible cursor, can interact with GUI elements) and camera control (no cursor, mouse controls camera). Toggling between these two modes can be done by middle mouse button or the F3 key by default.
 
 The most important class of the system is `ControlsEndpoint` – it represents one thingy/action that can be triggered/controlled. An endpoint can have multiple `ControlsBinding`s – those are actual inputs that the endpoint can accept. For example, the endpoint `moveForward` can have bindings "keyboard button W" and "gamepad left joystick Y+".
 
